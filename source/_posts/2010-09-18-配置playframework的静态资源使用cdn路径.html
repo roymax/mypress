@@ -1,0 +1,59 @@
+---
+layout: post
+title: 配置PlayFramework的静态资源使用CDN路径
+categories:
+- play!
+tags:
+- CDN
+- play!
+- playframework
+- 动静态分离
+- 开发
+- 技术
+- 静态资源
+published: true
+comments: true
+permalink: /blog/配置playframework的静态资源使用cdn路径
+---
+<p>在互联网应用中，我们通常都需要将动态请求与静态请求分离，或使用独立域名，或使用子域名，或使用CDN分发。同时为了减少生产部署与开发环境切换时更改大量文件，一般都通过修改一个配置文件来实现。</p>
+
+<p>但偏偏现在大部分框架都没有提供这样一个模块实现，那只好自己简单处理一下。同样在PlayFramework中一样没有这样的设置。google group( <a title="Redirect staticDir:public to a sub domain" href="http://groups.google.com/group/play-framework/browse_thread/thread/1d681f866477ac6b" target="_blank">http://groups.google.com/group/play-framework/browse_thread/thread/1d681f866477ac6b</a> )中有关于这个问题的描述, 刚开始我也一样，想修改routes中的staticDir:public 配置, 但不成功于是找到这个帖子。作者非常明确地告诉我@{..}语法只工作在相同域名下。跟着，我想将我的子域名配置在application.conf中，通过读取它添加到资源路径上。我认为，我只需要在模板(Template engine)中找办法成功读取到application.conf就算成功了。</p>
+
+<p>结果，我找到了它：#{script 'jquery.js' /} (<a title="http://www.playframework.org/documentation/1.0.3/templates" href="http://www.playframework.org/documentation/1.0.3/templates" target="_blank">http://www.playframework.org/documentation/1.0.3/templates</a>)，它的作用是生成&lt;script type="text/javascript" language="javascript"  src="/public/javascripts/jquery.js"&gt;&lt;/script&gt;这个js的引用，查找源代码(play/framework/templates/tags/script.tag)可以知道，你的js文件是必须放到/public/javascripts下的，到这里我已经对Tags这个功能眼前一亮了，我知道我找的就是它。只要我创建一个Tags，我就可以在静态资源前加上子域名了。</p>
+
+<p>（其实 #{script 'jquery.js'} 跟main.html这个默认布局里的<br />
+&lt;script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;<br />
+产生的效果是一样的）
+<blockquote>试着做了一个实现，在项目路径/app/views/创建tags目录，复制script.tag源代码改名建立一个script_cdn.tag，16行加入
+<code>_domain = play.configuration.getProperty("script_cdn", "");</code></blockquote>
+<blockquote>
+在最后一行/public/前加入
+<code>#{if _domain}${_domain}#{/if}</code></blockquote>
+<blockquote>
+保存，并在application.conf中加入（请将＝号后面改成你本机的地址）
+<code>script_cdn=http://aquarius.local:9000</code></blockquote>
+<blockquote>
+现在已经完成了，你可以在页面调用它看看
+<code>#{script_cdn 'jquery.js' /}</code></blockquote>
+样式表也可以如法炮制，看看stylesheet.tag去吧。</p>
+
+<p>完整的script_cdn.tag</p>
+
+<p><code>
+<div id="_mcePaste">*{</div>
+<div id="_mcePaste">*  insert a script tag in the template.</div>
+<div id="_mcePaste">*  by convention, referred script must be put under /public/javascripts</div>
+<div id="_mcePaste">*    src     (required)   : script filename, without the leading path "/public/javascripts"</div>
+<div id="_mcePaste">*    id      (opt.)       : sets script id attribute</div>
+<div id="_mcePaste">*    charset (opt.)       : sets source encoding - defaults to UTF-8</div>
+<div id="_mcePaste">*    #{script id:'datepicker' , src:'ui/ui.datepicker.js', charset:'utf-8' /}</div>
+<div id="_mcePaste">}*</div>
+<div id="_mcePaste">%{</div>
+<div id="_mcePaste">( _arg ) &amp;&amp;  ( _src = _arg);</div>
+<div id="_mcePaste">if(! _src) {</div>
+<div id="_mcePaste">throw new play.exceptions.TagInternalException("src attribute cannot be empty for script tag");</div>
+<div id="_mcePaste">}</div>
+<div id="_mcePaste">_domain = play.configuration.getProperty("script_cdn", "");</div>
+<div id="_mcePaste">}%</div>
+<div id="_mcePaste">&lt;script type="text/javascript" language="javascript"#{if _id} id="${_id}"#{/if}#{if _charset} charset="${_charset}"#{/if}  src="#{if _domain}${_domain}#{/if}/public/javascripts/${_src}"&gt;&lt;/script&gt;</div>
+</code></p>

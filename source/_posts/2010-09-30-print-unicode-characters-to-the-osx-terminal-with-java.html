@@ -1,0 +1,74 @@
+---
+layout: post
+title: Print Unicode characters to the OSX Terminal with Java
+categories:
+- play!
+tags:
+- OSX
+- playframework
+- Terminal
+- textmate
+- utf8
+- 乱码
+published: true
+comments: true
+permalink: /blog/print-unicode-characters-to-the-osx-terminal-with-java
+---
+<p>在OSX环境下，如果你没有使用Eclipse、NetBeans等IDE来编写Java代码，当使用sysout或Logger向控制台输出UTF8字符时是会出现乱码。</p>
+
+<p>比如我们编写一个类来测试一下（OSX terminal和textmate均已经配置为UTF8编码）
+<code>
+# export LANG=zh_CN.UTF-8<br />
+# touch T.java<br />
+# mate T.java
+</code></p>
+
+<p>然后，我用textmate来编辑并录入以下内容
+<code class="java">public class T<br />
+{
+public static void main(String[] args) {<br />
+System.out.println("中文");<br />
+}
+}</code></p>
+
+<p>我尝试在终端下编译并运行它</p>
+
+<p><code># javac T.java<br />
+T.java:4: ???棺???? EUC_CN ?Ĳ???ӳ???ַ?<br />
+System.out.println("???");<br />
+^
+T.java:4: ???棺???? EUC_CN ?Ĳ???ӳ???ַ?<br />
+System.out.println("???");<br />
+^
+</code></p>
+
+<p>明显是因为识别不到UTF8引起错误。其实我们编译时需要加入参数-encoding UTF8 可以解决这个问题
+<code>javac -encoding UTF8 T.java</code>
+但在同理在运行这个T.class我们也要加入输出的编码参数，以令Java不使用默认的输出编码(ISO8859)
+<code>java -Dfile.encoding=utf8 T</code></p>
+
+<p>至此，已经知道如何解决Java在OSX终端下显示utf8的问题了。但如果你在textmate中执行cmd+R(安装了<a href="http://github.com/alkemist/Java.tmbundle">Java.tmBundle</a>)，你会发现问题跟刚才讲的如出一撤，无法运行。其实这里有点小BUG，插件作者同样没有处理了javac的编译问题，你可以编译以下文件修复这个问题
+<code># mate ~/Library/Application Support/TextMate/Bundles/Java.tmbundle/Support/bin/java_compile_and_run.sh
+</code>
+在第16行和第21行添加参数-encoding UTF8，如下：
+<code>
+......<br />
+"$TM_JAVAC" -encoding UTF8 -d "$output" $TM_JAVA_FILEGLOB; rc=$?;<br />
+.......<br />
+"$TM_JAVAC" -encoding UTF8 -d "$output" "$SOURCE"; rc=$?;<br />
+........
+</code></p>
+
+<p><code><code> </code></code></p>
+
+<p><code><code>保存，再运行一次cmd+R看看，应该就正常了。(这里是我修复的派生版本：<a href="http://github.com/roymax/Java.tmbundle" target="_blank">http://github.com/roymax/Java.tmbundle</a>)</code></code></p>
+
+<p><code><code>在PlayFramework中，通常会在命令行中play run 或play test，如果我们在终端同样有输出的话，也会乱码。<br />
+要修改这个问题，可以编辑在PLAY_ROOT/中的play(基于1.0)或PLAY_ROOT/framework/pym/play/下的application.py（基于1.1 beta2)文件，在文件中找java_cmd，在它前面加入一行
+<code>java_args.append ('-Dfile.encoding = utf8'); </code>
+基于Python代码的特性，请记住，这一行需要跟java_cmd是并列缩进的，如果你懂py，估计你知道我在说什么了<br />
+或者如果不想改动Play的原文件，那么你在启动时这样做了，一样可行
+<code>play run -Dfile.encoding=utf8 </code>
+Notes: Play的作者说已经修复这个问题在仓库主干了，也许下一版本就不需要这么麻烦</code></code></p>
+
+<p></p>

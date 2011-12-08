@@ -1,0 +1,117 @@
+---
+layout: post
+title: 技术总结－ouxifan第一个测试版本发布
+categories:
+- play!
+- 团队
+- 技术
+tags:
+- mysql
+- nginx
+- ouxifan
+- playframework
+- ubuntu
+published: true
+comments: true
+permalink: /blog/ouxifan-beta-1
+---
+<p>经过去一个月的开发，于上周末终于迎来了我们产品的第一个beta版本，该版本实现了产品最核心的功能，所有不是那么“不重要”的都被排除在外：它没有搜索功能，它没有站内消息功能，它也没有可嵌套的评论，甚至连找回密码都没有。因为以上的我们现在都不需要，我们只做了一个像样一点的帐号管理功能、登录、注册，你可以换一下头像，按我们的指引发布一个关于穿衣打扮的意见，关注其他用户关于穿衣打扮的见解，评论它。就是这么简单的一个“可用”版本，它也僅僅是“可用”，我们甚至打算为它准备好几天来Debug。但没有关系，我们都准备好了面对这一切，我们打算把它做得更好一些。</p>
+
+<p>而在过去的一周，我一直在期待这一个beta版本的来临，为了给将来的产品模式部署做好准备，我谋划着如何为它准备测试机的测试环境。并尽量让测试环境接近于产品环境。</p>
+
+<p>我们用到的技术：
+<ul>
+	<li><strong>PlayFramework</strong> 1.1 ，刚刚升级到1.1.1</li>
+	<li>MySQL 5.1.41 ， 打算在5.5测试通过后，升级到 5.5</li>
+	<li>JDK 1.6.0_21</li>
+	<li><strong>memcached</strong> 1.4.2 ,    Cached部分</li>
+	<li>GlassFish 3.0.1   ,        Application 服务器</li>
+	<li><strong>Mercurial</strong> Server (hg)     ,    代码仓库</li>
+	<li><strong>nginx</strong> 0.7.67  ,               Proxy ＋ 静态Host</li>
+	<li>ubuntu-10.04.1-server-amd64  ,      服务器系统</li>
+	<li>GraphicsMagick 1.3.12</li>
+</ul>
+下面是一些关于Play的经验、产品技术开发、准备测试环境时遇到的问题及解决方法:
+<ol>
+	<li> <strong>为什么选择PlayFramework ？</strong>一开始我们想用Rails，敏捷而且快速。但团队更熟悉Java，而本人认为SSH风格的开发模式过于繁锁，我们需要的是一个能够快速开发，快速迭代的框架，PlayFramework看起来不错，我们就尝试着用它。</li>
+	<li><strong>项目目录结构</strong> 为日后可能的多项目公共代码引用，我们将一些公共代码抽取放入到Play 的Modules 里，各项目以引用modules的方式共享公共代码。看起来像这样:
+<code>
+</code><blockquote>sources<br />
+|-  apps<br />
+|       |- main<br />
+|       |- passport<br />
+|- modules<br />
+|       |- models<br />
+|       |- commons<br />
+|       |- statics</blockquote>
+</li>
+	<li><strong>为CDN分发做准备</strong> 我们将所有apps的静态文件都放入了statics modules中分类存放，通过Play的routes配置，在开发者环境中各apps通过引入modules来做路径的相对引用，而产品模式可以配置成对应的host路由，像我们的配置文件一样：
+<code>
+</code><blockquote>#{if play.mode.isDev()}<br />
+GET /public/images/ staticDir:public/images<br />
+GET /public/ staticDir:public/<br />
+#{/}<br />
+#{else}<br />
+GET imgs.domain.com.cn/ staticDir:public/images<br />
+GET jscss.domain.com.cn/javascripts/ staticDir:public/javascripts<br />
+GET jscss.domain.com.cn/stylesheets/ staticDir:public/stylesheets<br />
+#{/}</blockquote>
+
+以图片举例，在开发环境中，html片段为: /public/images/commons/foo.jpg<br />
+而在产品模式下，html片段为： imgs.domain.com.cn/public/images/commons/foo.jpg<br />
+要运用以上技巧，除了配置routes外，还需要修改HTML模板中的路由引用:<br />
+将</li></ol></p>
+
+<p><code>
+</code></p>
+
+<p><code>
+<blockquote>&lt;script src="@{'/public/javascripts/common/jquery-1.4.2-noConflict.min.js'}"&gt;&lt;/script&gt;</blockquote>
+</code></p>
+
+<p>修改为
+<code>
+</code></p>
+
+<p><code>
+<blockquote>&lt;script src="@@{'/public/javascripts/common/jquery-1.4.2-noConflict.min.js'}"&gt;&lt;/script&gt;</blockquote>
+</code>注意引用@符号从一个修改为两个，@表示当前域名相对路径引用，@@表示绝对路径引用。
+	<li><strong>Session问题</strong> 其实是cookie，Play的Session 是基于cookie的，但又不允许开发者修改cookie的domain，如果应用有多个子域名需要一次登录，那么就需要自定义一个Sessoin方案。因为我们简单地实现了一个SSO。</li>
+	<li>Nginx 上传文件大小限制，在nginx配置文件添加client_max_body_size配置解决<code>
+</code></li></p>
+
+<p><code>
+<blockquote>client_max_body_size 5m;</blockquote>
+</code>
+	<li>Play的模板是可以嵌套调用的，因为可以分为：全局模板，局部模板及页面片段</li>
+	<li>善用Play id特性，可以将不同开发者、测试、产品模式的配置项写在配置文件内而不相互干扰</li>
+	<li>gm在ubuntu 10.04通过apt-get安装的最新版本是1.3.07，它不支持thumbnail参数，这个参数可以将图片的信息去除，使图片更小。我们下载了最新的安装包1.3.12，并参考 <a href="http://cblfs.cross-lfs.org/index.php/GraphicsMagick">http://cblfs.cross-lfs.org/index.php/GraphicsMagick</a> 编译通过。</li>
+	<li>在使用gm生成形象照时，我们发现图片有点粗糙，如果要想高质量的图片，需要调整quality参数，我们定义在90时感觉不错了</li>
+	<li>max open files 在ubuntu 10.04通过设置/etc/security/limits.conf 后nginx不生效，通过修改nginx配置添加worker_rlimit_nofile解决<code>
+</code></li></p>
+
+<p><code>
+<blockquote>worker_rlimit_nofile 65535;</blockquote>
+</code>
+	<li>自Play 1.1 发布支持glassFish上原生部署，非通过war包形式，但我们的项目部署出错，最后选择Nginx + Play <a name="server"></a></li>
+	<li>Play获取真实IP需要做两件事情，
+<ol>
+	<li>在NginX 中添加X-Forwarded-For header</li>
+	<li>在Play中添加application.conf文件中添加X-Forwarded-For支持</li>
+</ol>
+代码如下：[codesyntax lang="text" title="NginX.conf" container="none" capitalize="no" strict="no"]
+<pre>location ~ .* {
+	    proxy_set_header        X-Real-IP       $remote_addr;
+            proxy_set_header        X-Forwarded-For $remote_addr;
+            proxy_pass   http://127.0.0.1:9000;
+        }</pre>
+[/codesyntax]</li></p>
+
+<p>[codesyntax lang="text" title="application.conf" container="none" capitalize="no" strict="no"]
+<pre>XForwardedSupport=127.0.0.1,10.0.0.25</pre>
+[/codesyntax]<br />
+在Controller中通过request.remoteAddress获取真实IP
+	<li>Play在dev模式下连接memcached会经常丢失shutdown，这是因为Play的class auto reload问题引起，此问题暂时无解。</li>
+
+暂时想到这些，想到再补充。<br />
+标题上的ouxifan是我们的项目开发代码</p>

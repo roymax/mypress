@@ -91,7 +91,8 @@ module Jekyll
           'categories'   => categories,
           'tags'   => tags,
           'published' => published,
-          'comments' => comments
+          'comments' => comments, 
+          'permalink' => "/blog/#{URI.decode permalink_title}"
         }
 
         FileUtils.mkdir_p "source/_#{type}s"

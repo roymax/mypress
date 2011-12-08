@@ -1,0 +1,45 @@
+---
+layout: post
+title: sinaly- 新浪微博与trunk.ly的连接器
+categories:
+- lab
+- 技术
+tags:
+- gae
+- github
+- play!
+- playframework
+- siena
+- sinaly
+- trunk.ly
+- 新浪微博
+published: true
+comments: true
+permalink: /blog/sinaly
+---
+<p>前段时间利用<a href="http://playframework.org">PlayFramewrok</a>写了个<a href="http://t.sina.com.cn/roymax">sina微博</a>与<a href="http://trunk.ly/roymax">trunk.ly</a>的连接器程序，已经发布到<a href="http://sinatrunk.appspot.com/">GAE</a>。</p>
+
+<p><a href="http://blog.roynotes.com/wp-content/uploads/2011/02/sinatrunk.png"><img class="aligncenter size-large wp-image-28199" title="sinatrunk.appspot.com" src="http://blog.roynotes.com/wp-content/uploads/2011/02/sinatrunk-1024x640.png" alt="" width="640" height="400" /></a></p>
+
+<p>这个程序的主要的功能就是将我<a href="http://t.sina.com.cn/roymax">新浪微博</a>上发布及转发的包含链接的微博自动收集到<a href="http://trunk.ly/roymax">trunk.ly</a>上，以方便于回溯跟踪管理自己喜欢的链接。</p>
+
+<p>工作原理：通过GAE的cron每隔五分钟读取最近发布的微博，分析原文或转发的微博内是否包含URL，如果有则用URL为trunk的url，并抓取URL页面的标题为title，微博的内容为note和text提交到trunk.ly保存。
+<h4>但程序到少有以下缺陷：</h4>
+<ol>
+	<li> 针对单用户设计的。</li>
+	<li> trunk.ly的API限制只能post链接到api key的提供者</li>
+	<li>只保障能用，没有经过优化</li>
+	<li>因为GAE的CPU和资源限制，部署到GAE上不工作</li>
+	<li>.......</li>
+</ol>
+<h4><strong>依赖：</strong></h4>
+<ol>
+	<li><strong>playframework 1.1</strong></li>
+	<li><strong>play module (siena-1.3 / gae-1.4 )</strong></li>
+	<li><strong>sina sdk for java （经过修改）</strong></li>
+	<li><strong>jsoup-1.4.1</strong></li>
+</ol>
+原版sina sdk代码tweet中不包含retweet的主体，因为我需要将转发的原文加入到trunk.ly的text中，所以经过少量修改，代码放到{project}/modules/weibo4j 。</p>
+
+<p>代码暂时不打算再修改了，所有的代码都host到git，有兴趣的朋友拿去修改优化一下
+<blockquote><a href="https://github.com/roymax/sinaly">https://github.com/roymax/sinaly</a></blockquote></p>

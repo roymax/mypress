@@ -1,0 +1,43 @@
+---
+layout: post
+title: 发布我的应用--SiNALY
+categories:
+- lab
+- 技术
+tags:
+- python
+- sina
+- sinaly
+- trunk.ly
+- web.py
+- 微博
+published: true
+comments: true
+permalink: /blog/sinaly-python-released
+---
+<p>之前用Play-framework写了一个<a title="sinaly- 新浪微博与trunk.ly的连接器" href="http://blog.roynotes.com/2011/02/12/sinaly/" target="_blank">新浪微博与Trunk.ly的连接器程序</a>，并部署到GAE上，由于种种原因,其实是用不了的。我又用了大概一周晚上的时间，平均每天1个多小时左右用Python重新写了一个。我是从来没有用python写过web app，最多只是当胶水语言来实现一些偷懒的工作。</p>
+
+<p>所以在框架上我选择了看起来最简单最容易入手的web.py作为开发框架。刚开始时是非常顺利的，甚至只用了一个小时就基本写好了代码结构，要知道我是不了解web.py的，但这也只证明web.py真提简单易用，但当要深一步去调整时就要不停的repeat再repeat地调试了，因为大部分的功能都需要依赖外部第三方实现，中途我甚至还有过一段时间在想是不是换成Django算了，我想我还是喜欢一栈式的解决方案。</p>
+
+<p>最后，在CSS和排版上我也遇到一些问题，毕竟我不是设计师，但又超爱漂亮，所以就瞎鼓搞了一些时间。最终这个程序经过包装后重装放出来了</p>
+
+<p><a href="http://sinaly.roynotes.com"><img class="aligncenter size-large wp-image-28208" title="sinaly-python" src="http://blog.roynotes.com/wp-content/uploads/2011/02/sinaly-python-1024x690.png" alt="SiNALY-python版本" width="640" height="431" /></a>
+<blockquote>
+<ul>
+	<li>开发语言：python</li>
+	<li>微博 python SDK：<a href="https://github.com/plestoon/python-sinat">sinat-python</a></li>
+	<li>Trunk.ly python SDK:  <a href="https://github.com/roymax/trunkly-python">trunkly-python</a></li>
+	<li>web开发框架：web.py</li>
+	<li>modules: lxml , jinja2 , sqlalchemy</li>
+</ul>
+</blockquote>
+程序部署在<a href="http://www.webfaction.com/?affiliate=roymax">WebFaction</a>上，通过Apache2 + mod_wsgi 运行。今天在部署上还是遇到了一些问题，比较Python的库路径，mod_wsgi的配置。</p>
+
+<p>因为一切都不熟悉，所以工作起来特别有趣。</p>
+
+<p>现在SiNALY的只是定时获取微博内容分析并同步的Trunk.ly上去分享，我想现阶段在效率上一定会有问题，后面我将主要完成两个工作：
+<ol>
+	<li>改进同步的脚本，让它再有效率</li>
+	<li>添加解除同步绑定功能</li>
+</ol>
+如果你在用<a href="http://t.sina.com.cn">新浪微博</a>，又同时在使用<a href="http://trunk.ly">Trunk.ly</a>，欢迎试用 <a title="SiNALY" href="http://sinaly.roynotes.com">SiNALY</a>。如果对于功能、改进、BUG上有什么建议，请<a href="http://blog.roynotes.com/about-roy/">联系我</a>，当然最简单的方式是在新浪上<a href="http://t.sina.com.cn/roymax">@我</a> 或 twitter <a href="http://twitter.com/roy_wei">@roy_wei</a>。</p>

@@ -1,0 +1,75 @@
+---
+layout: post
+title: Play CDN Support Module
+categories:
+- play!
+tags: []
+published: true
+comments: true
+permalink: /blog/play-cdn-support-module
+---
+<p>根据前一篇文章的实现思路写了这个插件，并放到了github，有需要的朋友请自行下载使用。</p>
+
+<p><a title="PlayFramework CDN Support Module" href="http://github.com/roymax/play-cdn" target="_blank">http://github.com/roymax/play-cdn</a> {将不再维护和准备关闭了}</p>
+
+<p><hr />
+Notes: 从Play! 1.1开始已经华丽地通过修改route原生支持CDN部署。<br />
+在route中修改原来的静态资源映射如下</p>
+
+<p><code>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;"># Map static resources from the /app/public folder to the /public path</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">#{if play.mode.isDev()}</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">GET     /public/images/                			staticDir:public/images</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">GET     /public/				                staticDir:public/</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">#{/}</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">#{else}</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">GET     img.myapp.com/				        	staticDir:public/images</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">GET     jscss.myapp.com/			     		staticDir:public</span></div>
+<div id="_mcePaste" style="padding-left: 30px;"><span style="color: #000000;">#{/}</span></div>
+</code></p>
+
+<p>在引用资源的时候使用@@{} 而不是默认的@{}标签，如</p>
+
+<p><code>
+<p style="padding-left: 30px;">&lt;link rel="stylesheet" type="text/css" media="screen,projection" href="@@{'/public/stylesheets/style.css'}"&gt;</p></code></p>
+
+<p></p>
+
+<p><code> </code></p>
+
+<p>以上代码能够在开发环境与部署环境中完美地自动切换。</p>
+
+<p>具体看这里的 ， http://www.playframework.org/documentation/1.1RC1/releasenotes-1.1</p>
+
+<p><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300;">
+<h2 id="anamerouteHostVirtualhostinginroutesa" style="margin-top: 30px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;"><span style="color: #444444; font-size: x-large;"><span><span style="color: #000000;">
+<h2 id="anamerouteHostVirtualhostinginroutesa" style="margin-top: 30px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;"><a style="padding-top: 1px; padding-right: 5px; padding-bottom: 1px; padding-left: 5px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: 200; font-style: normal; font-size: 20px; font-family: inherit; vertical-align: baseline; color: #444444; background-color: #b3e862; margin: 0px; border: 0px initial initial;" name="routeHost">Virtual hosting in routes</a></h2>
+<p style="margin-top: 20px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;">The <strong>routes</strong> file now supports Host matching. this can be useful if action parameters must be extracted from the host parameter. For example, for a SAAS application, you could use:</p></span></span></span></h2></span></p>
+
+<p><pre style="outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; overflow-x: hidden; overflow-y: hidden; white-space: pre-wrap; word-wrap: break-word; padding: 0px; margin: 0px; border: 0px initial initial;"><code style="margin-top: 5px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding-top: 5px; padding-right: 10px; padding-bottom: 5px; padding-left: 10px; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 14px; font-family: monospace, Helvetica, Arial, sans-serif; vertical-align: baseline; display: block; background-color: #e0ffb8; border-bottom-style: solid; border-bottom-color: #94da3a; border-top-style: solid; border-top-color: #94da3a;">GET    {client}.mysoftware.com/         Application.index
+</code></pre>
+<p style="margin-top: 20px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;">and then automatically retrieve the <strong>client</strong> value as for any other request parameter:</p></p>
+
+<p><pre style="outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; overflow-x: hidden; overflow-y: hidden; white-space: pre-wrap; word-wrap: break-word; padding: 0px; margin: 0px; border: 0px initial initial;"><code style="margin-top: 5px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding-top: 5px; padding-right: 10px; padding-bottom: 5px; padding-left: 10px; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 14px; font-family: monospace, Helvetica, Arial, sans-serif; vertical-align: baseline; display: block; background-color: #e0ffb8; border-bottom-style: solid; border-bottom-color: #94da3a; border-top-style: solid; border-top-color: #94da3a;">public static void index(String client) {
+    ...
+}
+</code></pre>
+<p style="margin-top: 20px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;">When using the <strong>@@{...}</strong> notation (absolute reverse routing) in a template, the host will be used if provided by the corresponding route. This can be useful in several situations.</p>
+<p style="margin-top: 20px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;">For example, if you want to use a content distribution network to distribute your static assets in production, you could write a <strong>routes</strong> file like this:</p></p>
+
+<p><pre style="outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; overflow-x: hidden; overflow-y: hidden; white-space: pre-wrap; word-wrap: break-word; padding: 0px; margin: 0px; border: 0px initial initial;"><code style="margin-top: 5px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding-top: 5px; padding-right: 10px; padding-bottom: 5px; padding-left: 10px; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 14px; font-family: monospace, Helvetica, Arial, sans-serif; vertical-align: baseline; display: block; background-color: #e0ffb8; border-bottom-style: solid; border-bottom-color: #94da3a; border-top-style: solid; border-top-color: #94da3a;">#{if Play.mode.isDev()}
+    GET     /public/                        staticDir:public
+#{/}
+#{else}
+    GET     assets.myapp.com/               staticDir:public
+#{/}
+</code></pre>
+<p style="margin-top: 20px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;">And in your templates:</p></p>
+
+<p><pre style="outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; overflow-x: hidden; overflow-y: hidden; white-space: pre-wrap; word-wrap: break-word; padding: 0px; margin: 0px; border: 0px initial initial;"><code style="margin-top: 5px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px; padding-top: 5px; padding-right: 10px; padding-bottom: 5px; padding-left: 10px; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 14px; font-family: monospace, Helvetica, Arial, sans-serif; vertical-align: baseline; display: block; background-color: #e0ffb8; border-bottom-style: solid; border-bottom-color: #94da3a; border-top-style: solid; border-top-color: #94da3a;">&lt;img src="@@{'/public/images/logo.png'}"&gt;
+</code></pre>
+<p style="margin-top: 20px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 16px; font-family: inherit; vertical-align: baseline; padding: 0px; border: 0px initial initial;">This will be reversed as <strong>http://locahost:9000/public/images/logo.png</strong> in DEV mode, and<strong>http://assets.myapp.com/images/logo.png</strong> in PROD mode.</p></p>
+
+<p><div></div>
+
+</p>

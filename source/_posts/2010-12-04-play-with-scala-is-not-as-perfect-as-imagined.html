@@ -1,0 +1,39 @@
+---
+layout: post
+title: Play with Scala?并不是想像中的那样完美
+categories:
+- play!
+- 技术
+tags:
+- liftweb
+- play!
+- playframework
+- scala
+published: true
+comments: true
+permalink: /blog/play-with-scala-is-not-as-perfect-as-imagined
+---
+<p><h2>关于Scala</h2>
+今年年初对Scala发生了兴趣，并读了几篇关于它的文章，也安装了runtime环境写一些Demo代码 。函数式的编程风格，天然的多核支持，简洁的多线程代码，自适应静态类型，闭包，还是运行在JVM上的编程语言，能与众多的JAVA项目良好的混搭起来。实际上Scala类编译后就是Java字节码，这对于Java开发者人员是有致命性诱惑的。
+<h2>遇见PlayFramework</h2>
+出于对Scala的一点了解和兴趣，也寻找了一些支持Scala的Web开发框架。首先我找到了liftweb，它完全基于Scala开发的Full Stack框架，但我真的不太喜欢stateful框架，当我看了一些lift的例子后就对于它没有兴趣了。直到知道Play从1.1版本开始支持Scala，并且Play的酷特性包括.......（省略了，不是重点）当时play 1.1还是beta版本，我也决定选择做我的一个小型项目架构，这种rails-like的java实现和share nothing架构值得我对它关注。最重要的是，当时我想，我可以这里写写java，那里写写scala，多么变态的想法。
+<h2>不完美......</h2>
+但，世事总是有不完美的时候，play+scala其实并不是那么好的.毕竟play骨子里还是java编写的，打开play scala module的源代码就会知道，那只是一堆Delegate类、Helper类而已。如在ScalaController中的这两行：
+<p style="padding-left: 30px;"><strong>def</strong> <strong>Json(</strong>json<strong>:</strong> <strong>String)</strong> <strong>=</strong> <strong>new</strong> <strong>RenderJson(</strong>json<strong>)</strong></p>
+<p style="padding-left: 30px;"><strong>def</strong> <strong>Json(</strong>o<strong>:</strong> <strong>Any)</strong> <strong>=</strong> <strong>new</strong> <strong>RenderJson(new</strong> com<strong>.</strong>google<strong>.</strong>gson<strong>.Gson().</strong>toJson<strong>(</strong>o<strong>))</strong></p>
+当scala用多了，你就不想用java的语法了.既然不想用了，就会认为那是代码的臭味道，跟着就想着去修改它，修改成Scala风格的。可惜有时也无能为力，毕竟Play的底层还是Java，只是用Scala做了桥接，代码中总是有那么一点咖啡味。</p>
+
+<p>举些例子:
+<ul>
+	<li>在Model中，你的字段属性必须定义为var，不能为val，它一定是要可变的。（在lift中将属性字段设置为object）</li>
+	<li>在Model是存在一对多关系时，One映射Many请用java.util.List而不能是scala.List，因为JPA不理解scala.List(其它基于Collections的同理)</li>
+	<li>基于上一条，如果foo.bars返回bar的集合,你想使用bar.foreach语法，对不起，请你先做
+<span style="color: #ff6600;">import scala.collection.JavaConversions._<br />
+foo.bars.foreach(bar =&gt; println(bar.id))</span></li>
+	<li>如果要返回Json或Xml格式到View，单个对象还好，能正常返回。如果是一对多对象就有问题了。如果没有嵌套关系，可以
+<span style="color: #ff6600;">def index = {       	    Json(Role.findAll.toArray)    }</span>
+这样返回正确的Json，否则按照<a href="http://groups.google.com/group/google-gson/msg/b7637a04522ca28c">http://groups.google.com/group/google-gson/msg/b7637a04522ca28c</a>这里做吧。要知道，在Java版本的Play是不存在这个问题的。造成这个问题的原因，说到底就是因为反射。具体可以看看这个贴子说的<a href="http://groups.google.com/group/play-framework/browse_thread/thread/5639a3d3c15dbd51">http://groups.google.com/group/play-framework/browse_thread/thread/5639a3d3c15dbd51</a></li>
+</ul>
+目前来说，这是我不那么喜欢Play+ Scala的一些东西。当然相对于Liftweb，我还是喜欢Play+Scala。</p>
+
+<p>如果需要一个完全scala风格的框架，目前应该也就只有Liftweb合适。或许有人说是<a title="Home" href="http://www.scalatra.org/">Scalatra</a>，但我没有真正用过，甚至了解过，不作评论。但如果喜欢PlayFramework的框架，只是想体验一下scala编程的乐趣，或作为Java-&gt;Scala过渡，Play with Scala</p>

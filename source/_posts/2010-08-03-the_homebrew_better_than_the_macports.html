@@ -1,0 +1,42 @@
+---
+layout: post
+title: Homebrew比丑陋的MacPorts更好
+categories:
+- apple
+- Mac
+- 工具
+tags:
+- homebrew
+- macports
+- OSX
+published: true
+comments: true
+permalink: /blog/the_homebrew_better_than_the_macports
+---
+<p>对于一般用户来说，使用<a title="macports" href="http://www.macports.org" target="_blank">macports</a>来做包管理还是比较方便的，我的macbook上也老早就装上了macports了，但一直没有去用它，因为感觉它有点恶心丑陋。其实我一直担心它污染我的系统，因为它的依赖机制是根据自身来检查的，只要你的软件不是用macports安装的，即使你系统中已经存在里该依赖包（即使同一版本）它也会被下载回来安装一遍。还引申出另一些问题是，系统中有很多相同软件的不同版本、浪费磁盘空间、安装速度因为依赖包过多而非常缓慢......如果你可以忍受这些，macports还是挺方便的。可惜我实在受不了，终于我发现了<a title="homebrew" href="http://github.com/mxcl/homebrew" target="_blank">Homebrew</a>这个替换者，由于homebrew声明与macports不兼容，我马上把macports删除了试用homebrew。</p>
+
+<p>先删除macports
+<pre class="brush: bash;fontsize: 100; first-line: 1; ">sudo port -f uninstall installed
+sudo rm -rf \
+/opt/local \
+/Applications/DarwinPorts \
+/Applications/MacPorts \
+/Library/LaunchDaemons/org.macports.* \
+/Library/Receipts/DarwinPorts*.pkg \
+/Library/Receipts/MacPorts*.pkg \
+/Library/StartupItems/DarwinPortsStartup \
+/Library/Tcl/darwinports1.0 \
+/Library/Tcl/macports1.0 \
+~/.macports</pre>
+<span style="background-color: #ffffff;"><span style="color: #ff9900;"><span style="white-space: pre;"> </span>注意: /opt/local目录如果自己安装过软件，请修改一下</span></span><span style="white-space: pre;">
+</span></p>
+
+<p><span style="white-space: pre;"> </span>然后安装Homebrew，一行搞定
+<pre class="brush: ruby;light: true; collapse: true; fontsize: 100; first-line: 1; "><span style="background-color: #ffffff;">ruby -e "$(curl -fsS http://gist.github.com/raw/323731/install_homebrew.rb)"</span></pre>
+<span style="white-space: pre;"> </span>homebrew是用ruby开发的，在mac下默认就安装了ruby发行包的，下面就等自动下载安装homebrew吧。</p>
+
+<p><span style="white-space: pre;"> </span>安装完成后，测试一下
+<pre class="brush: bash;fontsize: 100; first-line: 1; ">brew -v</pre>
+<span style="white-space: pre;"> </span>返回Homebrew的版本号说明安装成功。安装软件可以用<span style="background-color: #ff00ff;">brew install package</span>命令，因为wget常用来测试而mac又没有自带，所以测试一下:
+<pre class="brush: bash;fontsize: 100; first-line: 1; ">brew install wget</pre>
+自动完成后which wget看看安装路径，默认安装到了/usr/local/bin下。好了，可以使用系统自带的库而不需要为macports的方式闹心</p>

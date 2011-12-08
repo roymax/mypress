@@ -1,0 +1,42 @@
+---
+layout: post
+title: play!framework 1.1正式版指日可待
+categories:
+- play!
+tags:
+- play!
+- playframework
+- scala
+- 开发
+- 技术
+published: true
+comments: true
+permalink: /blog/playframework_1_1_coming_soon
+---
+<p>自10月份以来连续放出三个RC版本，估计Play! 1.1的里程碑发布将指日可待了。在新版本中包含的特性是非常精彩，它们令Play!框架更加完整完善。当时，个人感觉跟Rails在某些细节上还是有一些差距的。</p>
+
+<p>首先的一点是，插件不如Rails丰富。即使GRails也不如。Play要获取爆炸式的发布的话，grails社区能否积极地参与进来及是否有更多的ssh开发者投入到该阵型并开发更多的模块插件有着很大的关系。</p>
+
+<p>rails的一栈式服务，原生就能够做到各层的代码生成，无论是正向还是反向的。如rails的models 是动态生成的，不是特殊情况，是不必手工处理ORM的映射关系。在Play!中你需要通过JPA annotation来做实体的映射关系，虽然有一个module插件(<a title="play-db" href="http://www.playframework.org/modules/db" target="_blank">play-db</a>)可以解决这个问题，但截至目前为止，该module 在做包含外键关系的代码生成时会出错而不可用。同时对于我最大的问题是：它不支持scala。</p>
+
+<p>还有那个cookie based session的问题，对于rails来说，这是可选方案，但对于Play来讲这是唯一方案。你得自己去做另外的实现，比如memcached based.....</p>
+
+<p>......</p>
+
+<p>总体感觉细节上还是不如Rails，当初选择Play！是因为它支持Scala语言，看起来真的好Cool，但记住，Play！只是轻度支持。什么意思？它并非原生支持Scala，只是在框架上多了一个Module，令你可以使用Scala的语法来构建应用。说到底，它的底层实现还是基于Java的。所以有时候调用起来还是有点儿别扭了。</p>
+
+<p>如果是Scala的重度Web开发感染者，我还是建议你去玩Liftweb算了，纯Scala实现，多拉风啊！我只是不喜欢它的框架是statefull实现。</p>
+
+<p>无论如何，以下是我最喜欢的五个新特性！期待1.1的正式版发布。
+<ul>
+	<li>Scala language support</li>
+	<li>Native Glassfish deployment support</li>
+	<li>Virtual hosting in routes</li>
+	<li>New powerful async WS library</li>
+	<li>OAuth support</li>
+</ul>
+PS:
+<ul>
+	<li>我正在用Play! 1.1来构建两个应用。其中一个基于Java，另一个基于Scala</li>
+	<li>1.1已于11月1日发布(更新于2010.11.2)</li>
+</ul></p>

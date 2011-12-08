@@ -1,0 +1,34 @@
+---
+layout: post
+title: playframework+scala+gae!wow...
+categories:
+- play!
+tags:
+- gae
+- playframework
+- scala
+- 开发
+- 技术
+published: true
+comments: true
+permalink: /blog/integration-playframework_scala_gae_siena
+---
+<p>OK,首先更正一下自己，我一直以为scala是跑在JVM内的动态语言，其实它还不算动态语言，它只是有很多动态语言的特性罢了。scala希望成为一门将函数式编程与面向对象组合在一起的语言。<br />
+playframework又是一个非常轻量级的框架，它的官网列出五个最cool的特性<a href="http://www.playframework.org/documentation/1.0.2.1/5things" target="_blank">http://www.playframework.org/documentation/1.0.2.1/5things</a>
+。当我试用后，我真的觉得是酷极了。<br />
+当scala与play！这两个这么有趣的东西结合到一起，真是欲罢不能～</p>
+
+<p>看看这个介绍的视频，非常简单有趣
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="400" height="263" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="data" value="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="src" value="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed type="application/x-shockwave-flash" width="400" height="263" src="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" allowscriptaccess="always" allowfullscreen="true" data="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"></embed></object></p>
+
+<p><a href="http://vimeo.com/7731173">Play with scala</a> from <a href="http://vimeo.com/user2463720">zenexity</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+
+<p>参照着例子（<a href="http://sites.google.com/site/scalatohoku/dai74kaibenkyoukai/starting-up-the-project-scala-version--memo" target="_blank">http://sites.google.com/site/scalatohoku/dai74kaibenkyoukai/starting-up-the-project-scala-version--memo</a>）写了一个类试了试，非常顺利地完成。</p>
+
+<p>但成使用play的gae模块就不是这样顺利了，搞了两天没有搞定，play-gae有说明支持JPA，可能我配置不正确，同时它也极力推荐使用另一个ORM框架 --- siena （<a href="http://sienaproject.com/" target="_blank">http://sienaproject.com/</a>,很不幸，官网被墙的访问：<a href="http://code.google.com/p/siena" target="_blank">http://code.google.com/p/siena</a>）。无奈之下，唯一下载安装测试。<br />
+经过多次调试，最后还是有问题，当scala编译成class后实例变量是private的，而siena通过反射来获取成员变量，所以抛出一个java.lang.IllegalAccessException（<a href="http://bit.ly/aX1sr9" target="_blank">http://bit.ly/aX1sr9</a>），已经有人提交了这个BUG，同时作
+<script src="../tinymce/themes/advanced/langs/zh.js" type="text/javascript"></script>
+ <script src="../tinymce/plugins/wordpress/langs/zh.js" type="text/javascript"></script>
+者也已经修复，但最新的下载包还是2月份发布的，不包括这个patch。</p>
+
+<p>最后尝试下载siena源码编译，但依赖关系还未搞定，准备边尝试编译边期望作者发布一个新的小版本吧～</p>

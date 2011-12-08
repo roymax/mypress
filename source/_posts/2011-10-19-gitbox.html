@@ -1,0 +1,30 @@
+---
+layout: post
+title: gitbox=git+dropbox
+categories:
+- 工具
+tags:
+- dropbox
+- git
+published: true
+comments: true
+permalink: /blog/gitbox
+---
+<p>自从没有今天背着手提电脑上班后，感觉颈椎真的轻松了很多，为了身体，未来一段时间也不会背着电脑移动。但电脑不移动后，就要想办法将办公室与家里的电脑同步，以保持文档版本的一致性。</p>
+
+<p>现在云服务非常流行，当然将主要文档同步到云端去，我选择了一直使用的dropbox做简单的文档同步就好了。而又有一些属于私人性质的项目代码使用Git进行版本控制，当然我暂时不想将它们公开放到github，又不想购买私有仓库。当然用https://bitbucket.org/ 也不错，它现在已经提供免费的git私有仓库了。当然用dropbox DIY一个其实也挺靠谱的，你只需要这样做:</p>
+
+<p><blockquote>~/project $ git init<br />
+~/project $ git add .<br />
+~/project $ git commit -m "first commit"<br />
+~/project $ cd ~/Dropbox/git</blockquote></p>
+
+<p>~/Dropbox/git $ mkdir project.git<br />
+~/Dropbox/git $ cd project.git<br />
+~/Dropbox/git $ git init --bare<br />
+~/Dropbox/git $ cd ~/project</p>
+
+<p>~/project $ git remote add origin ~/Dropbox/git/project.git<br />
+~/project $ git push origin master</p>
+
+<p></p>
