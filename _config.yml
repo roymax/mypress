@@ -88,7 +88,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: roymax
+disqus_short_name: roynotes
 disqus_show_comment_count: false
 
 # Google Analytics
