@@ -22,15 +22,18 @@ categories: [效率]
 ###准备
 #####关于DD-WRT路由器
 家里正好有两台设备，一台是D-Link DIR-605 D1 ,通过查询是wip状态:
-	work in progress, router support is in the works, but please don't ask how long it takes, we cannot give you a schedule in the most cases.
+
+work in progress, router support is in the works, but please don't ask how long it takes, we cannot give you a schedule in the most cases.
 
 另一台为Netgear WGR614 v9，非常悲剧也是wip。正要放弃准备购买新设备时得知，DIR-605可以刷DIR-615 D2，经过两个晚上的几个小时尝试最终也刷成功，但最后我还是买了一台路由器，因为DIR-605无论如何也支持不了OpenVPN。
 
-	如果设备支持OpenVPN，在下载页会列出标有vpn字样的下载链接
+如果设备支持OpenVPN，在下载页会列出标有vpn字样的下载链接
 
-我为什么需要OpenVPN？因为我拥有一个Astrill的VPN帐号[推广链接][1]，就因为这个家伙介绍支持DD-WRT我才知晓可以这样玩（*Astrill VPN本身是不支持多设备同时登录，通过DD-WRT可允许7台设备同时使用*）。当时我还不知道有autoddvpn这个东西，只能按Astrill的安装介绍来寻找一台支持OpenVPN版本的DD-WRT路由器了。而[Astrill推荐](https://www.astrill.com/knowledge-base/52/What-Router-for-OpenVPN.html)了**Asus RT-N16**和**Linksys WRT 160N**，刚好有朋友从香港回来就托运了一台，这样又多花费550人左右。所以我最后用的设备是RT-N16。
+我为什么需要OpenVPN？因为我拥有一个Astrill的VPN帐号[推广链接][1]，就因为这个家伙介绍支持DD-WRT我才知晓可以这样玩. Astrill VPN本身是不支持多设备同时登录，通过DD-WRT则可允许7台设备同时使用。
 
-	事实上，你不需要OpenVPN，用PPTP也是可以的，只要按照autoddvpn的文档写好你的脚本。通过Astrill的安装界面只是图个方便而已。这里我用“可能”来描述是因为我没有进行测试。只不过到后来我也放弃了Astrill的内置安装模式。
+当时我还不知道有autoddvpn这个东西，只能按Astrill的安装介绍来寻找一台支持OpenVPN版本的DD-WRT路由器了。而[Astrill推荐](https://www.astrill.com/knowledge-base/52/What-Router-for-OpenVPN.html)了**Asus RT-N16**和**Linksys WRT 160N**，刚好有朋友从香港回来就托运了一台，这样又多花费550人左右。所以我最后用的设备是RT-N16。
+
+事实上，你不需要OpenVPN，用PPTP也是可以的，只要按照autoddvpn的文档写好你的脚本。通过Astrill的安装界面只是图个方便而已。这里我用“可能”来描述是因为我没有进行测试。只不过到后来我也放弃了Astrill的内置安装模式。
 
 #####关于PPTP或OpenVPN帐号
 刚才我说了，我的解决方案是[Astrill][1]，大概一年70刀，最近又涨价了。而且现在竟然将DD-WRT单独出来做增值收费, 需要另付 $1/月。
