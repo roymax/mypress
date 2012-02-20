@@ -38,12 +38,13 @@ server.listen(8080, function() {
 
 保存文件并执行
 
-```
+```javascript
 $ node app.js
 restify listening at http://0.0.0.0:8080
 ```
 通过curl命令测试，服务器返回HTTP状态码`200`和一个`application/json`类型的内容(事实上这里不是)
-```
+
+```javascript
 $ curl -is http://localhost:8080/hello/roy
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
@@ -74,15 +75,9 @@ X-Response-Time: 3
 	* 版本化支持
 
 2. 自动选择内容格式进行响应，并可以自定义格式
-3. 内置REST风格的错误处理机制，重载400和409来解析应答：得到一个包含`code`和`message`的JSON对象
-```
-{
-  	"code": "InvalidArgument",
-  	"message": "I just don't like you"
-}	
-```
-
-已经实现的RestError:
+3. 内置REST风格的错误处理机制，重载了400和409来解析应答，得到一个包含`code`和`message`的JSON对象。也可以子类化`restify.RestError`实现自己错误代码和信息。
+	
+	已实现的RestError:
 	* RestError
 	* BadDigestError
 	* BadMethodError
@@ -99,8 +94,8 @@ X-Response-Time: 3
 	* ResourceNotFoundError
 	* WrongAcceptError
 
-同样可以子类化`restify.RestError`实现自己错误代码和信息。
 4. 插件机制
+
 5. DTrace支持，这个绝对是调式、诊断和性能测量利器
 
 虽然现在`restify`还是初生婴儿，我还是把上面提到的手机归属地查询接口改用了`restify`来实现了一个[moquery](https://github.com/roymax/moquery)。
