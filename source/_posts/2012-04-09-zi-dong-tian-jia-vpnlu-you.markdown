@@ -24,7 +24,7 @@ categories: [shell, osx]
 最后，必须赋执行权限
 
 ```
-$ sudo chmod a+x /etc/ip-up
+$ sudo chmod a+x /etc/ppp/ip-up
 
 #查看是否添加成功
 $ netstat -nr
