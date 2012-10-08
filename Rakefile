@@ -4,9 +4,9 @@ require "stringex"
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
-ssh_user       = "roymax@web158.webfaction.com"
+ssh_user       = "root@108.166.200.149"
 ssh_port       = "22"
-document_root  = "/home/roymax/webapps/octopress/roynotes"
+document_root  = "/opt/com.roynotes"
 deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy
