@@ -10,21 +10,25 @@ published: true
 comments: true
 permalink: /blog/gitbox
 ---
-<p>自从没有今天背着手提电脑上班后，感觉颈椎真的轻松了很多，为了身体，未来一段时间也不会背着电脑移动。但电脑不移动后，就要想办法将办公室与家里的电脑同步，以保持文档版本的一致性。</p>
 
-<p>现在云服务非常流行，当然将主要文档同步到云端去，我选择了一直使用的dropbox做简单的文档同步就好了。而又有一些属于私人性质的项目代码使用Git进行版本控制，当然我暂时不想将它们公开放到github，又不想购买私有仓库。当然用https://bitbucket.org/ 也不错，它现在已经提供免费的git私有仓库了。当然用dropbox DIY一个其实也挺靠谱的，你只需要这样做:</p>
+自从没有每天背着手提电脑上班后，感觉颈椎真的轻松了很多，为了身体，未来一段时间也不会背着电脑移动。但电脑不移动后，就要想办法将办公室与家里的电脑同步，以保持文档版本的一致性。
 
-<p><blockquote>~/project $ git init<br />
-~/project $ git add .<br />
-~/project $ git commit -m "first commit"<br />
-~/project $ cd ~/Dropbox/git</blockquote></p>
+现在云服务非常流行，当然将主要文档同步到云端去，我选择了一直使用的dropbox做简单的文档同步就好了。而又有一些属于私人性质的项目代码使用Git进行版本控制，当然我暂时不想将它们公开放到github，又不想购买私有仓库。当然用 [bitbucket](https://bitbucket.org/) 也不错，它现在已经提供免费的git私有仓库了。当然用dropbox DIY一个其实也挺靠谱的，你只需要这样做:
 
-<p>~/Dropbox/git $ mkdir project.git<br />
-~/Dropbox/git $ cd project.git<br />
-~/Dropbox/git $ git init --bare<br />
-~/Dropbox/git $ cd ~/project</p>
+```
+#工作目录 
+~/project $ git init
+~/project $ git add .
+~/project $ git commit -m "first commit"
+~/project $ cd ~/Dropbox/git
 
-<p>~/project $ git remote add origin ~/Dropbox/git/project.git<br />
-~/project $ git push origin master</p>
+#Dropbox目录 
+~/Dropbox/git $ mkdir project.git
+~/Dropbox/git $ cd project.git
+~/Dropbox/git $ git init --bare
+~/Dropbox/git $ cd ~/project
 
-<p></p>
+#将工作目录推送到Dropbox云端
+~/project $ git remote add origin ~/Dropbox/git/project.git
+~/project $ git push origin master
+```
