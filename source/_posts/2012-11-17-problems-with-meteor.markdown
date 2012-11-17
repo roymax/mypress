@@ -6,7 +6,17 @@ comments: true
 categories: [meteorjs]
 ---
 
-最近尝试用[meteor](http://www.meteor.com)写一个app，遇到一些小问题并记录下来
+最近一个月关注了一下几个前端MVC库，包括有Emberjs/Angularjs/Meteorjs/Backbonejs等，发现所谓的前端后端的界线越来越模糊了。
+
+Angularjs非常吸引人，看起来真的不错，而且还是由google这个业界巨头开源出来，质量值得信任。如果已经有一个良好的后端架构支持，Angularjs/Backbonejs之间必定任选其一都不会错，说到底就是看用哪家的API更舒服一些了。
+
+如果从零开始学习或玩票性质地想做一些尝试性项目，我个人推崇Meteor。这个家伙启动成本真的很低很低，一体化的框架，基于nodejs+mongodb，社区也足够的活跃。当然了，优点也就是缺点，Full Stack Framework就是意味着一些制约了。
+
+Emberjs则有点像Rails，或者直接说就是一个完全遵循Rails思想的框架，而且天生就跟Rails做高整合。如果熟悉Rails并且有一个基于Rails的后端或许是一个不错的选择，但个人感觉学习曲线有点徒（当然这更多是臆测，因为个人上手感觉不大习惯）。
+
+另外还有几个Knockout/CanJS/Batman/Spine就没细看了，从github上的fork和wacth来看，感觉社区活跃度都比不上前面提到的几家。
+
+最后尝试用[meteor](http://www.meteor.com)写一个app，遇到一些小问题并记录下来
 
 ## 加载nodejs package
 
