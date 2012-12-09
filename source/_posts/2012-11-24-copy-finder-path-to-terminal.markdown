@@ -17,3 +17,7 @@ categories: osx
 另外推荐一下DTerm这个免费的Terminal工具可以跟Finder配合着使用，通过热键`⌘+⇧+↵`呼出后就直接在Finder的当前路径进行Terminal操作，相当方便。而且可以跟IDE配合着使用，[官方首页](http://decimus.net/DTerm)有详细的介绍及视频展示
 
 {% img http://d.pr/i/6Xbf+ %}
+
+UPDATE: 
+
+*通过DTerm快速在当前目录打开Terminal*，在Finder中热键`⌘+⇧+↵`呼出DTerm，再按`⌘+↵`
