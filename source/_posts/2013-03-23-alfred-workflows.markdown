@@ -40,3 +40,7 @@ categories: alfred2
 
 [Startup News](http://news.dbanotes.net) 最近浏览比较多，本来打算做一个，结果[有人做好了](http://www.v2ex.com/t/63210)
 
+-----
+UPDATE:
+
+一个Alfred工作流的汇总页 [http://www.alfredworkflow.com/](http://www.alfredworkflow.com/)
