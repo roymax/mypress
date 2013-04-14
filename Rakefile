@@ -154,7 +154,7 @@ task :new_post, :title do |t, args|
     post.puts "---"
   end
   puts "open #{filename}"
-  system "open #{filename}"
+  system "subl #{filename}"
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
