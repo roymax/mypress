@@ -5,7 +5,7 @@ date: 2013-04-14 11:28
 comments: true
 external-url: 
 published: true
-categories: scala,java,finagle
+categories: [scala,java,finagle]
 ---
 
 ## 简介

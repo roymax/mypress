@@ -1,0 +1,110 @@
+---
+layout: post
+title: "let us Go"
+date: 2013-09-18 23:00
+comments: true
+external-url:
+published: true
+categories: ['nitrous.io', 'golang']
+---
+
+## 简介
+
+这里有两个主角，一个是 Nitrous.io，另一个是Go。正因为想学Go，所以想把一些学习过程记录下来
+
+### Nitrous.io
+
+很早就知道 Nitrous.io 这个东西了，当时没有太多的感觉，没太多关注。最近无意中真正注册了一个帐号才发现，这不是一个所谓的 *云IDE* 这么简单，它还可以建立一个线上的虚拟开发环境，进行线上开发和测试，就像在本地用 *Vagrant* 进行开发一样。
+
+### Go
+
+我想 Go 语言堪称当前最热的新开发语言了吧，除了系出 google 名门外，一些富现代感的特性让人赞不绝口。
+
+## 开始
+
+注册过程就跳过不表了，激活帐号后可以通过提供免费方案创造一个虚拟机，默认可选 Rails / node.js / Python / Go 四种预先定制的开发环境 *box* 。事实上这是一个基于 **Ubuntu** 的虚拟机，常用的[开发工具一应俱全][ref1]，比如: git, hg, build-essential。你甚至可以在上面安装任意软件，如：JVM、Lua 或其他。我在这里选择了基于 *Go* 的模板虚拟环境!
+
+同时，还可以选择服务器所在地区，我选的是亚洲区域，总体上来说速度还可以接受。
+
+一切Ok后将进入如下图的在线开发环境工作台
+
+<img src="http://d.pr/i/MqOD+">
+
+工作台的左方为项目目录树，中间有编辑区，下方是终端控制台。
+
+### Hello World
+
+在终端输入命令
+
+```
+action@gobox-31437:~$ cd workspace/ && touch hello.go
+action@gobox-31437:~/workspace$ ls
+hi.go
+```
+
+然后可以通过IDE左方的目录树点击`workspace`发现刚才创建的`hi.go`文件，双击打开并输入
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Hello, World!!")
+}
+```
+
+回到终端，我可以使用 `go run hi.go` 执行它然后将回显 **Hello World!!**
+
+### 像Vagrant一样
+
+事实上，Nitrous连作为一个好用的文本编辑器都不够格，那如何胜任开发的重任呢，这不是有点鸡肋吗？事实上，可以把Nitrous当Vagrant来使，好处有
+
+- 不占本地资源：硬盘、内存和CPU
+    SSD还是挺贵的
+- 不需要安装vagrant
+- 我可怜的08年 MacBook 风扇不再狂转
+- 工作环境云同步，网吧也能写代码
+
+Vagrant 有一个很好的功能就是文件同步，在本地使用习惯的 IDE 进行开发，文件实时同步在虚拟环境测试。既然 Nitrous 的线上 IDE 不好用，那么可以使用本地顺手的 IDE 进行开发。
+
+针对 Mac 可以下载官方的客户端，并打开文件同步功能
+
+<img src="http://d.pr/i/Z3Zd+">
+
+这时将在`Home`目录创建一个名为`Nitrous.IO`的文件夹并进行同步，同步完成后将多了一个对应 box 命名的文件夹，内容为虚拟环境的`Home`目录。用 `sublime text 2` 打开刚才创建的`hi.rb`，本地做任何修改将在线上IDE看到即时变化。
+
+另外，还可以使用 `iTerm` 来替换线上的终端环境。
+
+打开[https://www.nitrous.io/app#/boxes](https://www.nitrous.io/app#/boxes) 选中已创建的box 会发现有一项`SSH URI`。只要点击这个URI，`Safari`就会询问授权打开默认终端。当然，你也可以通过命令行在`iTerm`中输入打开远程终端，因为使用的是ssh 密钥认证所以整个过程无需密码
+
+```
+ssh action@URI -p PORT
+```
+
+有时，从终端输入命令太繁琐了，可以在`~/.ssh/`创建一个`config`文件，内容如下
+
+```
+#~/.ssh/config
+Host gobox
+  HostName apne1.actionbox.io
+  User action
+  Port 12345
+  IdentityFile ~/.ssh/id_rsa
+```
+
+保存后即可通过命令`ssh gobox`进入远端命令行
+
+另一种方法是配置一下`iTerm`，创建一个 `Profiles`并设置一个快捷键快速打开进入远端
+
+<img src="http://d.pr/i/5XB0+">
+
+---
+
+
+开发环境基本准备好了，接下来我要看看如何用Go做一个Web应用。
+
+最后，如果你想试用 Nitrous，欢迎点击 [Nitrous小尾巴](https://www.nitrous.io/join/YsusrqFe8dY) 帮助我赞点小闪电。
+
+
+[ref1]: http://help.nitrous.io/box-interpreters-and-tools/
