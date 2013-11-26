@@ -57,7 +57,6 @@ categories: [osx]
 - **Fantastical** 替换日历，Bundle购买就装上
 - **Path Finder** 替换 Finder，Bundle购买也一直没用好，继续尝试
 - **1Password** 贵！！！密码好帮手
--
 
 > 通常我会使用 nvALT 速记，以纯文本的方式存储到 Byword 的目录使之可以通过 iCloud 同步，在片段经常整理成型后使用 Byword 的 publish(内购) 能力发布到 Evernote 归档。 从而形成以下工作流 `nvALT -> Byword -> Evernote`
 
@@ -90,13 +89,18 @@ categories: [osx]
 - **JewelryBox** ruby版本管理工具，rvm GUI 
 - **MacVim** 经常*YADR Dotfiles* 定制过也挺好用
 
+<img src="http://d.pr/i/v3ve+">
+
+<img src="http://d.pr/i/tBL2+">
+
+<img src="http://d.pr/i/Z8hN+">
+
 ### 网络工具
 
 - **QQ** 这货耗电，但也离不开
 - **迅雷** 会员还是挺好用的
 - **Chrome** 主力还是 Safari，需要它的 Apps
 - **Forklift** FTP工具，冻点购买，够用也比较便宜
-- 
 
 ### 其他
 
