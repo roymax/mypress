@@ -10,7 +10,7 @@ ssh_port       = "22"
 document_root  = "/opt/com.roynotes"
 rsync_delete   = true
 
-deploy_default = "rsync"
+deploy_default = "push"
 
 # Hidden "dot" files that should be included with the deployed site (see task copydot)
 copy_dot_files = []
