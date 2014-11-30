@@ -5,7 +5,7 @@ require 'rake/minify'
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
-ssh_user       = "root@108.166.200.149"
+ssh_user       = "mydocker"
 ssh_port       = "22"
 document_root  = "/opt/com.roynotes"
 rsync_delete   = true
