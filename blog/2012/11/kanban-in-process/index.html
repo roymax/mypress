@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>kanban in process - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/2012/11/kanban-in-process/">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Kanban in Process
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-17T11:16:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2012</time>
+         &bull; <a rel="bookmark" href="/blog/2012/11/kanban-in-process/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>重新做了一块看板应用到一个新项目组，并执行三周，继续探索中&#8230;</p>
+
+<h2>简介</h2>
+
+<p>看板的三个主要原则：</p>
+
+<ul>
+<li>可视化流程</li>
+<li>限制工作的数量</li>
+<li>改善周期</li>
+</ul>
+
+
+<h3>约定</h3>
+
+<ul>
+<li>所有原始需求放到redmine中</li>
+<li>所有的Bug通过redmine提交</li>
+<li>黄色便签代表 backlog/story/task</li>
+<li>红色便签代表 bug</li>
+<li>当前任务项贴上自己的磁贴标记</li>
+<li>每周一收集上一周的工作数据</li>
+<li>每天早上10点进行立会</li>
+<li>按需召开产品分析会议
+
+<ul>
+<li>看板上任务不够了</li>
+<li>功能优先级调整了</li>
+</ul>
+</li>
+<li>流程顺序，从上到下从左到右</li>
+<li>按需发布，由产品负责人决定</li>
+<li>每周一收集上周的WIP产生CFD(Cumulative Flow Graph)</li>
+</ul>
+
+
+<h3>需求分析会议上需要明确的内容</h3>
+
+<ul>
+<li>任务分解</li>
+<li>设计需时</li>
+<li>开发需时</li>
+<li>按功能优先级制定冲刺目标</li>
+</ul>
+
+
+<h2>版本控制的约定</h2>
+
+<h3>开发过程</h3>
+
+<ul>
+<li>基于gitflow的分支模型</li>
+<li><code>master</code>分支设置为产品分支，并设置为保护模式，开发人员不能向该分支push代码</li>
+<li><code>develop</code>分支设置为开发分支，开发人员每进行一个功能或bug修改需要新建分支操作并完成后合并回来</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>git flow feature start &lt;feature_name>
+</span><span class='line'>git add &lt;file>
+</span><span class='line'>git ci 
+</span><span class='line'># and more ...
+</span><span class='line'># need a help?
+</span><span class='line'># git flow feature publish &lt;feature_name>
+</span><span class='line'># done!
+</span><span class='line'>git flow feature finish &lt;feature_name>
+</span><span class='line'>git pull origin develop
+</span><span class='line'>git push origin develop</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>发布过程</h3>
+
+<ul>
+<li>产品人员决定需要发布时间和特性</li>
+<li>所有列入发布范围的特性生成一个<code>release branch</code>待验收测试</li>
+<li>所有未列入发布范围的功能或缺陷停止提交到<code>develop</code></li>
+<li>所有基于<code>release branch</code>的修改在该分支上进行</li>
+<li>发布成功后，发布版本打上指定版本标签，<code>develop</code>允许开放提交</li>
+</ul>
+
+
+<h3>版本标签</h3>
+
+<p>版本标签以<code>x.y.z</code>标记，</p>
+
+<ul>
+<li>x 代表重大版本变更</li>
+<li>y 代表较多功能特性增加及变更</li>
+<li>z 代表针对现有功能做出变更</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-17T11:16:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2012</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/kanban/'>kanban</a>, <a class='category' href='/blog/categories/scrum/'>scrum</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/2012/11/kanban-in-process/" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/2012/11/kanban-in-process/" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/zi-dong-tian-jia-vpnlu-you/" title="Previous Post: mac osx自动添加VPN路由">&laquo; mac osx自动添加VPN路由</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/11/problems-with-meteor/" title="Next Post: problems with meteor">problems with meteor &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/2012/11/kanban-in-process/';
+        var disqus_url = 'http://roynotes.com/blog/2012/11/kanban-in-process/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>PhoneGap VS. Titanium - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/phonegap-vs-titanium">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+PhoneGap vs. Titanium
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-30T00:00:00+08:00" pubdate data-updated="true">Apr 30<span>th</span>, 2011</time>
+         &bull; <a rel="bookmark" href="/blog/phonegap-vs-titanium">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>上周末珠三角沙龙如期举行，参加沙龙前特意又简单对比了一下PhoneGap和Titanium的特性，打算到现场跟黎展波交流一下，后因私事不能成行实在可惜。</p>
+
+<p>第一次听说PhoneGap是去年某周末<a href="http://www.taskant.com" target="_blank">TaskAnt</a>的孙总介绍(<a href="http://twitter.com/sunfang" target="_blank">sunfang@twiiter</a>)推荐的，传说当时他们计划做TaskAnt的Mobile客户端，至于最终是否选择了PhoneGap我倒不知道，但现在还没有客户端现在还是没有出来。广告一下：TaskAnt的确是一个非常有爱的小型团队计划任务平台，虽然我现在已经没有在用了，总有一天我会回来。</p>
+
+<p>在比较前，首先有一观点我认为是一致的：如果希望用PhoneGap、Titanium等框架来实现一个流畅的高端游戏或者需要CPU计算能力的应用，在当前的硬件条件、开发成本上的可能性几近为零。走错路了，还是去用原生平台代码去实现吧。正如月光博客上说的一样：“<a href="http://www.williamlong.info/archives/2489.html">兼容性越强的技术，成本越低，性能越差；兼容性越差的技术，成本越高，性能越好</a>”。</p>
+
+<p>在跨平台这个特性上，无可置疑地是PhoneGap胜出。这跟两家公司的策略和框架实现有关，PhoneGap更注重支持多个平台，而Titanium更注重提供原生的UI而只支持iOS+Android。这也体现在API上，PhoneGap没有提供UI部分的JS接口库，而Titanium则提供。</p>
+
+<p>最大的争议，我想在于是否&#8221;native&#8221;这一点上，众所周知PhoneGap的跨平台就是因为它是运行在WebView上的HTML+JS的实现，并且提供兼容性的JS库（当然，这里有一个跟本地设备桥接的实现，Titanium亦然）。而Titanium的实现类似，但争议在于官网上无处不在关于“native”的声明实在令人有点迷惘，过去我也一直以为这个native就是如文档说的一样：“Every single JS instruction you write is converted in pure ObjectiveC.”，包括上一次在沙龙上我也是这样说的（<a title="Titanium框架开发者平台介绍" href="http://blog.roynotes.com/2011/02/28/titanium-dev-platform/" target="_blank">这里</a>）。但现在更多的人在说它不是，最终也只是一个WebView的实现，所谓的native只是指&#8221;native&#8221; UI。的确，从build出来的包里也确实没找到ObjectiveC的代码。但有一点是肯定的，PhoneGap是运行在WebView上的HTML+CSS+JS，而Titanium只是用了JavaScript来写你的Mobile应用。前者包含了DOM特性，后者没有，前者可以用jQuery等第三方库，后者不允许或者说没必要。</p>
+
+<p>文档可读性上，Titanium的文档在过去我是觉得还是非常欠缺的，但在Github上的例子代码都可以解决了我大部分问题。而现在Titanium比我当时接触时好太多了，而且最近还开放了wiki，还有一个Q&amp;A平台，我相信会越来越完善。PhoneGap同样提供wiki文档，但由于没有深入开发之中，还不知道文档是否能真正解决问题。</p>
+
+<p>可扩展性方面，前天我还跟<a href="http://www.cngump.com/" target="_blank">@老甘</a> 说，我知道Titanium可以通过模块的扩展来实现一些官方API没有提供的功能，比如<a href="https://github.com/Shuyinsama/Titanium.paint-Module-expansion" target="_blank">Paint</a> 。今天再特意看看PhoneGap，其实也有<a href="http://wiki.phonegap.com/w/page/36752779/PhoneGap-Plugins" target="_blank">类似的实现</a>。原理应该都是一样的，基于框架的要求使用ObjectiveC来编写针对特殊场境的模块实现，当然也要同时考虑在不同的移动平台上的实现了，也是说兼容性将由开发者来保障。</p>
+
+<p>以前是综合参考资料中各文章汇总出来的简单比较，我并没有去比较各自API中的实现优劣势，我想这个还是留待大家去探索吧。而以上这些资料，已经足以让我们判断如何去选择一个框架：
+<ul>
+	<li>如果想快速开发一个iOS or/and Android原生UI的程序，选择Titanium或许更适合</li>
+	<li>如果想实现一个跨平台的基于HTML的移动应用，PhoneGap或许更适合</li>
+</ul>
+最后还是一点，开源协议上PhoneGap是基于<a href="http://www.opensource.org/licenses/bsd-license.php" target="_blank">“New” BSD</a> or <a href="http://www.opensource.org/licenses/mit-license" target="_blank">MIT license</a> 的，这比Titanium的<a href="http://www.opensource.org/licenses/apache2.0.php" target="_blank">Apache 2.0 license</a> 更加开放。而参考资料中有提到Titanium发布到AppStore需要付费，我想这可能过去的license或是误读，因为我还没有发布过属于自己的应用，也没有找到这一条付费内容，望知道出处的朋友告知。</p>
+
+<p>anyway，最近不碰Titanium了，直接学ObjectiveC了，哈哈&#8230;&#8230;
+<h3><strong>参考资料：</strong></h3>
+	<li><a href="http://stackoverflow.com/questions/1482586/comparison-between-corona-phonegap-titanium">http://stackoverflow.com/questions/1482586/comparison-between-corona-phonegap-titanium</a></li>
+	<li><a href="http://stackoverflow.com/questions/1482586/comparison-between-corona-phonegap-titanium"></a><a href="http://translate.google.com.hk/translate?hl=zh-CN&amp;ie=UTF-8&amp;sl=ja&amp;tl=zh-CN&amp;u=http://d.hatena.ne.jp/r_kurain/20101121/1290347346&amp;prev=_t">http://translate.google.com.hk/translate?hl=zh-CN&amp;ie=UTF-8&amp;sl=ja&amp;tl=zh-CN&amp;u=http://d.hatena.ne.jp/r_kurain/20101121/1290347346&amp;prev=_t</a></li>
+	<li><a href="http://great-way.appspot.com/2010/09/2/Mobile-Apps-cross-platform-development-challenge:-PhoneGap-vs.-Titanium-vs.-Rhod.html">http://great-way.appspot.com/2010/09/2/Mobile-Apps-cross-platform-development-challenge:-PhoneGap-vs.-Titanium-vs.-Rhod.html</a></li>
+&#8211;EOF&#8211;</p>
+
+<p>最后还是有话要说：如果只是想写iOS软件而不想学习ObjectiveC，我觉得Titanium才是你的选择。－20110501</p>
+
+<p>如果想开发跨平台的桌面程序，你应该看看Titanium，这跟PhoneGap在Mobile上的实现原理应该是一样的，将HTML5+CSS+JS实现的应用程序包裹在一个WebView容器里实现跨平台。当然，你可能会说AIR更好。－20110503</p>
+
+<p>&nbsp;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-30T00:00:00+08:00" pubdate data-updated="true">Apr 30<span>th</span>, 2011</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lab/'>lab</a>, <a class='category' href='/blog/categories/技术/'>技术</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/phonegap-vs-titanium" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/phonegap-vs-titanium" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/the-e-myth-revisited" title="Previous Post: 说说创业必经的那些事">&laquo; 说说创业必经的那些事</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/hackers-and-painters" title="Next Post: 不可不读的黑客与画家">不可不读的黑客与画家 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/phonegap-vs-titanium';
+        var disqus_url = 'http://roynotes.com/blog/phonegap-vs-titanium';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

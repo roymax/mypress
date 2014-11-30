@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>twitter finagle - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/2013/04/twitter-finagle/">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Twitter Finagle
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-14T11:28:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/04/twitter-finagle/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><h2>简介</h2>
+
+<p>Finagle是twitter内部的一个非常重要的核心工具库，它大量被应用于twitter内部系统。Finagle是一个异步的网络框架，能被用于实现异步的RPC客户端程序和基于JVM语言体系的服务端，包括Java，Scala，Jython等。</p>
+
+<p>它还支持众多协议</p>
+
+<ul>
+<li>HTTP</li>
+<li>HTTP Streaming (Comet)</li>
+<li>Thrift</li>
+<li>Memcached/Kestrel</li>
+<li>MySQL</li>
+<li>protobuf</li>
+<li>&#8230;&#8230;</li>
+</ul>
+
+
+<p>基于Finagle的Server端特性支持</p>
+
+<ul>
+<li>Backpressure (to defend against abusive clients)</li>
+<li>Service Registration (e.g., via Zookeeper)</li>
+<li>Distributed Tracing</li>
+<li>OpenSSL</li>
+</ul>
+
+
+<p>基于Finagle的Client端特性支持</p>
+
+<ul>
+<li>Connection Pooling</li>
+<li>Load Balancing</li>
+<li>Failure Detection</li>
+<li>Failover/Retry</li>
+<li>Distributed Tracing (à la Dapper)</li>
+<li>Service Discovery (e.g., via Zookeeper)</li>
+<li>Rich Statistics</li>
+<li>Native OpenSSL Bindings</li>
+</ul>
+
+
+<p>twitter是Scala重度用户，同时Finagle也是写于Scala，围绕Finagle衍生了很多辅助的项目</p>
+
+<ul>
+<li><a href="https://github.com/twitter/scrooge">scrooge</a></li>
+<li><a href="https://github.com/twitter/sbt-scrooge">sbt-scrooge</a></li>
+<li><a href="https://github.com/twitter/scala-boostrapper">scala-bootstrapper</a></li>
+<li><a href="https//github.com/twitter/sbt-package-dist">sbt-package-dist</a></li>
+<li>&#8230;&#8230;</li>
+</ul>
+
+
+<p>其中<code>scrooge</code>是一个<strong>thrift</strong>代码生成器的Scala版本，是<em>Apapche Thrift</em>版本的替换且保持与它兼容，它同时用于生成符合<em>Finagle</em>使用的代码，当前只支持生成Scala和Java文件。而<code>sbt-scrooge</code>则是一个sbt插件。</p>
+
+<p><code>scala-bootstrapper</code>类似于一个脚手架工具，用于生成一个基础的<code>finagle</code>项目</p>
+
+<p><code>sbt-package-dist</code>则是一个基于sbt的打包插件</p>
+
+<h2>Hello World</h2>
+
+<p>这个<code>Hello World</code>将由<em>scala-bootstrapper</em>项目入手，该项目是一个ruby项目，因此确保有ruby安装环境。</p>
+
+<p>通过<code>scala-bootstrapper &lt;project&gt;</code>可以生成项目，但必须先建立一个项目目录，否则在当前目录创建</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ mkdir myfinagle && cd myfinagle
+</span><span class='line'>$ scala-bootstrapper myfinagle
+</span><span class='line'>writing Capfile
+</span><span class='line'>writing config/development.scala
+</span><span class='line'>writing config/production.scala
+</span><span class='line'>writing config/staging.scala
+</span><span class='line'>writing config/test.scala
+</span><span class='line'>writing Gemfile
+</span><span class='line'>writing project/build/MyfinagleProject.scala
+</span><span class='line'>writing project/build.properties
+</span><span class='line'>writing project/plugins/Plugins.scala
+</span><span class='line'>writing run
+</span><span class='line'>writing src/main/scala/com/twitter/myfinagle/MyfinagleServiceImpl.scala
+</span><span class='line'>writing src/main/scala/com/twitter/myfinagle/config/MyfinagleServiceConfig.scala
+</span><span class='line'>writing src/main/scala/com/twitter/myfinagle/Main.scala
+</span><span class='line'>writing src/main/thrift/myfinagle.thrift
+</span><span class='line'>writing src/scripts/console
+</span><span class='line'>writing src/scripts/startup.sh
+</span><span class='line'>writing src/test/scala/com/twitter/myfinagle/AbstractSpec.scala
+</span><span class='line'>writing src/test/scala/com/twitter/myfinagle/MyfinagleServiceSpec.scala</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我还根据需要，修改了一些依赖配置</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>.....
+</span><span class='line'>
+</span><span class='line'>libraryDependencies ++= Seq(
+</span><span class='line'>  "org.scala-lang" % "jline"                 % “2.9.1”,  #升级版本
+</span><span class='line'>  "com.twitter"    % "scrooge-generator"     % "3.0.8" intransitive(),  #升级版本
+</span><span class='line'>  "com.twitter"    % "scrooge-runtime"       % "3.0.8" intransitive(),  #升级版本
+</span><span class='line'>  "com.twitter"    % "finagle-core"          % “6.1.2”,  #升级版本
+</span><span class='line'>  "com.twitter"    % "finagle-thrift"        % “6.1.2”,  #升级版本 
+</span><span class='line'>  "com.twitter"    % "finagle-ostrich4"      % “6.1.2”,  #升级版本
+</span><span class='line'>  "org.scalatest" %% "scalatest"             % "1.7.1" % "test",
+</span><span class='line'>  "com.twitter"   %% "scalatest-mixins"      % "1.1.0" % "test"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>...
+</span><span class='line'>
+</span><span class='line'>CompileThriftScrooge.scroogeVersion := "3.0.8"  #升级版本
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>升级版本后，需要打开<code>src/main/scala/com/twitter/&lt;project&gt;/FinalgeServiceImpl.scala</code>将最后的<code>shutdown()</code>方法删除，否则无法编译通过</p>
+
+<p>最后按照项目目录下的<code>TUTORIAL.md</code>执行更新和测试启动是否成功</p>
+
+<p>但要正常运行，请看有哪些坑吧</p>
+
+<h2>坑</h2>
+
+<h3>sbt</h3>
+
+<ul>
+<li>执行<code>sbt update</code>前，如果你有自己架设的<em>maven代理服务器</em>，建议添加一下代理仓库，或加到项目根目录下的<code>sbt</code>文件里</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  #!/bin/bash
+</span><span class='line'>
+</span><span class='line'>  export SBT_PROXY_REPO="proxy server address"</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>如果打算使用自己的maven代理，将<code>project/plugins.sbt</code>里的<strong>resolvers</strong>部分指定的仓库加入到私有仓库。</p></li>
+<li><p>twitter的仓库(http://maven.twttr.com/)已被污染了IP，请确认你能访问该域名，否则应该修改<code>/etc/hosts</code>添加<code>199.59.148.212 maven.twttr.com</code></p></li>
+<li><p><code>freemarker</code>也无法访问，好像无关痛痒，注释掉</p></li>
+<li><p>没有必要单独安装sbt和scala，因为项目根目录本来就有一个sbt的脚本，它会自动下载并构建一个sbt和scala的运行环境，并且推荐使用该脚本文件</p></li>
+<li><p>如果需要使用本地的sbt环境，需要指定sbt版本<code>echo "sbt.version=0.11.3" &gt; ./project/build.properties</code></p></li>
+</ul>
+
+
+<h3>scala-bootstrapper</h3>
+
+<p>尝试<code>gem install scala-bootstrapper</code>发现可以安装，观察一下版本发现有点旧了，最后还是自己编译安装</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ git clone https://github.com/twitter/scala-bootstrapper.git
+</span><span class='line'>$ cd scala-bootstrapper
+</span><span class='line'>$ rake build
+</span><span class='line'>$ gem install pkg/scala-bootstrapper-*.gem</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但我在<code>rake build</code>这一步时遇到问题</p>
+
+<p>  fail &#8220;ERROR: &#8216;rake/rdoctask&#8217; is obsolete and no longer supported. Use &#8216;rdoc/task&#8217; (available in RDoc 2.4.2+) instead.&#8221;</p>
+
+<p>最后通过修改源代码解决</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'># Add this line just before the require to fix the deprecation notice
+</span><span class='line'>$LOAD_PATH.sort_by! { |p| p.match(%r[/rake\-]) ? 1 : 0 }
+</span><span class='line'>
+</span><span class='line'># 找到rake/rdoctask 替换为 rdoc/task
+</span><span class='line'>require 'rdoc/task'</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>scrooge</h3>
+
+<p>编译脚本会从twitter的仓库下载一个<a href="http://maven.twttr.com/com/twitter/scrooge/3.0.0/">scrooge-3.0.0.zip</a>的压缩包，不知道什么原因，scrooge的最新版本没有上传到仓库，同时也找不到这个最新版本的zip。那么如果需要使用新版本的scrooge，那要么使用<code>maven</code>，要么自己打一个zip包放到本地仓库</p>
+
+<p>我不知道twitter内部的计划，我通过以下方法生成了一个<code>3.0.8</code>版本</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>cd /tmp
+</span><span class='line'>git clone git://github.com/twitter/scrooge.git
+</span><span class='line'>cd scrooge 
+</span><span class='line'>mvn package dependency:copy-dependencies
+</span><span class='line'>
+</span><span class='line'>cd /tmp
+</span><span class='line'>wget http://maven.twttr.com/com/twitter/scrooge/3.0.1/scrooge-3.0.1.zip
+</span><span class='line'>unzip scrooge-3.0.1
+</span><span class='line'>mv scrooge-3.0.1 scrooge-3.0.8
+</span><span class='line'>cd scrooge-3.0.8 
+</span><span class='line'>rm -rf *.jar libs/*.jar
+</span><span class='line'>sed -i "" -e "s/3.0.1/3.0.8/g" ./scripts/scrooge
+</span><span class='line'>cp /tmp/scrooge/scrooge-generator/target/scrooge-generator-3.0.8.jar ./scrooge-3.0.8.jar
+</span><span class='line'>cp -r /tmp/scrooge/scrooge-generator/target/dependency/*.jar libs/
+</span><span class='line'>cd ..
+</span><span class='line'>zip -r scrooge-3.0.8.zip scrooge-3.0.8
+</span><span class='line'>cp scrooge-3.0.8.zip ~/.m2/repository/com/twitter/scrooge/3.0.8/</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>后记</h2>
+
+<p><code>Finagle</code>作为twitter的核心工具库，性能和稳定性应该还是有一定保障的，而且从公布开源的出来的一系列工具堆栈非常有吸引力，如用于数据收集和报告的ostrich，性能分析的zipkin等。但文档确认稍候欠奉，会遇上各种坑。</p>
+
+<p>再加上Scala的各版本不太兼容，稍不注意你就找不到对应的包。比如我希望设置用于scala-2.10.0版本就遇到些问题，而且花了好些时间才解决。估计scala发行版本再不保障版本的向前兼容，估计以后也很难普及。scala的社区个人觉得还是不够好，关注的人太少。scala在github上1196人加星，374人fork；而ruby的数据则是3826/867。</p>
+
+<p>另不知基于什么原因，估计twitter已经开始将sbt迁移到maven，以至于有多个sbt插件项目已经至少半年以上没有更新了，其中就包括了<code>scala-bootstrapper</code>和<code>sbt-scrooge</code>。所以，如果确定要使用finagle，建议还是使用maven吧，反正<code>scala-bootstrapper</code>生成的代码也没帮到多少，自己用<a href="https://github.com/n8han/giter8">giter8</a>也不是什么难事。</p>
+
+<h2>参考资料</h2>
+
+<ul>
+<li><a href="http://sunwenfeng.blogspot.com/2012/12/twitter-finagle-scalarpc.html">Finagle+Spring</a></li>
+<li><a href="https://github.com/twitter/scala_school">https://github.com/twitter/scala_school</a></li>
+<li><a href="http://twitter.github.io/effectivescala/index-cn.html">Effective scala</a></li>
+<li><a href="https://github.com/fujohnwang/real_world_scala/blob/master/02_sbt.markdown">使用SBT构建Scala应用</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-14T11:28:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/finagle/'>finagle</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/scala/'>scala</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/2013/04/twitter-finagle/" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/2013/04/twitter-finagle/" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/alfred-workflows/" title="Previous Post: Alfred Workflows">&laquo; Alfred Workflows</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/get-my-fund-value/" title="Next Post: get my fund value">get my fund value &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/2013/04/twitter-finagle/';
+        var disqus_url = 'http://roynotes.com/blog/2013/04/twitter-finagle/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

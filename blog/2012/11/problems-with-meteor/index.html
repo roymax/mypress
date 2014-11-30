@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>problems with meteor - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/2012/11/problems-with-meteor/">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Problems With Meteor
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-17T12:04:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2012</time>
+         &bull; <a rel="bookmark" href="/blog/2012/11/problems-with-meteor/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>最近一个月关注了一下几个前端MVC库，包括有Emberjs/Angularjs/Meteorjs/Backbonejs等，发现所谓的前端后端的界线越来越模糊了。</p>
+
+<p>Angularjs非常吸引人，看起来真的不错，而且还是由google这个业界巨头开源出来，质量值得信任。如果已经有一个良好的后端架构支持，Angularjs/Backbonejs之间必定任选其一都不会错，说到底就是看用哪家的API更舒服一些了。</p>
+
+<p>如果从零开始学习或玩票性质地想做一些尝试性项目，我个人推崇Meteor。这个家伙启动成本真的很低很低，一体化的框架，基于nodejs+mongodb，社区也足够的活跃。当然了，优点也就是缺点，Full Stack Framework就是意味着一些制约了。</p>
+
+<p>Emberjs则有点像Rails，或者直接说就是一个完全遵循Rails思想的框架，而且天生就跟Rails做高整合。如果熟悉Rails并且有一个基于Rails的后端或许是一个不错的选择，但个人感觉学习曲线有点徒（当然这更多是臆测，因为个人上手感觉不大习惯）。</p>
+
+<p>另外还有几个Knockout/CanJS/Batman/Spine就没细看了，从github上的fork和wacth来看，感觉社区活跃度都比不上前面提到的几家。</p>
+
+<p>最后尝试用<a href="http://www.meteor.com">meteor</a>写一个app，遇到一些小问题并记录下来</p>
+
+<h2>加载nodejs package</h2>
+
+<p>Meteor实际上基于nodejs，所以可以直接加载nodejs已有的package</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ meteor create myapp
+</span><span class='line'>$ cd myapp/.meteor/local/build/server
+</span><span class='line'>$ npm install &lt;package></span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后用以下方法加载</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>var pkg = __meteor_bootstrap__.require('package_name');</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>项目结构</h2>
+
+<p>Meteor 有两种方式拆分服务端和客户端代码</p>
+
+<ol>
+<li>使用<code>Meteor.is_client</code>和<code>Meteor.is_server</code>区别代码块，<code>meteor create project</code>后生成的代码就是用这种方法。</li>
+<li>将服务端和客户端代码分别放到项目根目录下的<code>server</code>和<code>client</code>文件夹。</li>
+</ol>
+
+
+<p>使用第二种方式，需要在项目目录下新建<code>server</code>和<code>client</code>目录，并将Meteor生成的项目的主文件分别拆分到目录，分别命名为<code>${ROOT}/server/proj_server.js</code>和<code>${ROOT}/client/proj_client.js</code>。</p>
+
+<p>另外，在项目根目录下的js文件可以设置公共的方法和变量，它能同时被server和client端调用。</p>
+
+<h2>使用Meteor.http特性</h2>
+
+<p>因为文档看得不够仔细，总是得到一个undefined的错误，后来发现Meteor.http也是Packages之一，所以需要<code>meteor add http</code>才可以使用。</p>
+
+<h2>关于编码</h2>
+
+<p>如果需要通过<code>Meteor.http.get</code>方法获取non-UTF8的内容就需要注意，因为Meteor将response设置成 UTF8返回，并不可以指定encoding。如果确认需要这处理GBK这个字符集，那么需要一点hacking code</p>
+
+<p>修改<code>packages/http/httpcall_server.js</code>文件</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>     var req_options = {
+</span><span class='line'>       url: new_url,
+</span><span class='line'>       method: method,
+</span><span class='line'>-      encoding: "utf8",
+</span><span class='line'>+      encoding: options.encoding || "utf8",
+</span><span class='line'>       jar: false,
+</span><span class='line'>       timeout: options.timeout,
+</span><span class='line'>       body: content,</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后，你可以这样做</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  Meteor.methods({getMyFunds: function() {
+</span><span class='line'>    this.unblock();
+</span><span class='line'>    var result = Meteor.http.get("http://hq.sinajs.cn/list=of110002"
+</span><span class='line'>      , { encoding: "base64" }
+</span><span class='line'>      );
+</span><span class='line'>    if (result.statusCode === 200) {
+</span><span class='line'>        var require = __meteor_bootstrap__.require;
+</span><span class='line'>        var Iconv = require('iconv').Iconv;
+</span><span class='line'>        var iconv = new Iconv('GBK', 'UTF-8//TRANSLIT//IGNORE');
+</span><span class='line'>        return iconv.convert(new Buffer(result.content,'base64')).toString();
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>  }});</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-17T12:04:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2012</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/meteorjs/'>meteorjs</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/2012/11/problems-with-meteor/" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/2012/11/problems-with-meteor/" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/kanban-in-process/" title="Previous Post: kanban in process">&laquo; kanban in process</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/11/copy-finder-path-to-terminal/" title="Next Post: copy finder path to terminal">copy finder path to terminal &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/2012/11/problems-with-meteor/';
+        var disqus_url = 'http://roynotes.com/blog/2012/11/problems-with-meteor/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

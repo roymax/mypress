@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>playframework+scala+gae!wow... - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/integration-playframework_scala_gae_siena">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Playframework+scala+gae!wow...
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-08T00:00:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2010</time>
+         &bull; <a rel="bookmark" href="/blog/integration-playframework_scala_gae_siena">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>OK,首先更正一下自己，我一直以为scala是跑在JVM内的动态语言，其实它还不算动态语言，它只是有很多动态语言的特性罢了。scala希望成为一门将函数式编程与面向对象组合在一起的语言。<br />
+playframework又是一个非常轻量级的框架，它的官网列出五个最cool的特性<a href="http://www.playframework.org/documentation/1.0.2.1/5things" target="_blank">http://www.playframework.org/documentation/1.0.2.1/5things</a>
+。当我试用后，我真的觉得是酷极了。<br />
+当scala与play！这两个这么有趣的东西结合到一起，真是欲罢不能～</p>
+
+<p>看看这个介绍的视频，非常简单有趣
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="400" height="263" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="data" value="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="src" value="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed type="application/x-shockwave-flash" width="400" height="263" src="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" allowscriptaccess="always" allowfullscreen="true" data="http://vimeo.com/moogaloop.swf?clip_id=7731173&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"></embed></object></p>
+
+<p><a href="http://vimeo.com/7731173">Play with scala</a> from <a href="http://vimeo.com/user2463720">zenexity</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+
+<p>参照着例子（<a href="http://sites.google.com/site/scalatohoku/dai74kaibenkyoukai/starting-up-the-project-scala-version--memo" target="_blank">http://sites.google.com/site/scalatohoku/dai74kaibenkyoukai/starting-up-the-project-scala-version&#8211;memo</a>）写了一个类试了试，非常顺利地完成。</p>
+
+<p>但成使用play的gae模块就不是这样顺利了，搞了两天没有搞定，play-gae有说明支持JPA，可能我配置不正确，同时它也极力推荐使用另一个ORM框架 &#8212; siena （<a href="http://sienaproject.com/" target="_blank">http://sienaproject.com/</a>,很不幸，官网被墙的访问：<a href="http://code.google.com/p/siena" target="_blank">http://code.google.com/p/siena</a>）。无奈之下，唯一下载安装测试。<br />
+经过多次调试，最后还是有问题，当scala编译成class后实例变量是private的，而siena通过反射来获取成员变量，所以抛出一个java.lang.IllegalAccessException（<a href="http://bit.ly/aX1sr9" target="_blank">http://bit.ly/aX1sr9</a>），已经有人提交了这个BUG，同时作
+<script src="../tinymce/themes/advanced/langs/zh.js" type="text/javascript"></script>
+ <script src="../tinymce/plugins/wordpress/langs/zh.js" type="text/javascript"></script>
+者也已经修复，但最新的下载包还是2月份发布的，不包括这个patch。</p>
+
+<p>最后尝试下载siena源码编译，但依赖关系还未搞定，准备边尝试编译边期望作者发布一个新的小版本吧～</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-08T00:00:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2010</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/play-/'>play!</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/integration-playframework_scala_gae_siena" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/integration-playframework_scala_gae_siena" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/html5_geolocation_demo" title="Previous Post: 尝试HTML5物理定位">&laquo; 尝试HTML5物理定位</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/everyone-should-be-a-project-manager" title="Next Post: 人人都应该是项目经理">人人都应该是项目经理 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/integration-playframework_scala_gae_siena';
+        var disqus_url = 'http://roynotes.com/blog/integration-playframework_scala_gae_siena';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Print Unicode characters to the OSX Terminal with Java - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/print-unicode-characters-to-the-osx-terminal-with-java">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Print Unicode Characters to the OSX Terminal With Java
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-30T00:00:00+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2010</time>
+         &bull; <a rel="bookmark" href="/blog/print-unicode-characters-to-the-osx-terminal-with-java">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>在OSX环境下，如果你没有使用Eclipse、NetBeans等IDE来编写Java代码，当使用sysout或Logger向控制台输出UTF8字符时是会出现乱码。</p>
+
+<p>比如我们编写一个类来测试一下（OSX terminal和textmate均已经配置为UTF8编码）
+<code>
+# export LANG=zh_CN.UTF-8<br />
+# touch T.java<br />
+# mate T.java
+</code></p>
+
+<p>然后，我用textmate来编辑并录入以下内容
+<code class="java">public class T<br />
+{
+public static void main(String[] args) {<br />
+System.out.println("中文");<br />
+}
+}</code></p>
+
+<p>我尝试在终端下编译并运行它</p>
+
+<p><code># javac T.java<br />
+T.java:4: ???棺???? EUC_CN ?Ĳ???ӳ???ַ?<br />
+System.out.println("???");<br />
+^
+T.java:4: ???棺???? EUC_CN ?Ĳ???ӳ???ַ?<br />
+System.out.println("???");<br />
+^
+</code></p>
+
+<p>明显是因为识别不到UTF8引起错误。其实我们编译时需要加入参数-encoding UTF8 可以解决这个问题
+<code>javac -encoding UTF8 T.java</code>
+但在同理在运行这个T.class我们也要加入输出的编码参数，以令Java不使用默认的输出编码(ISO8859)
+<code>java -Dfile.encoding=utf8 T</code></p>
+
+<p>至此，已经知道如何解决Java在OSX终端下显示utf8的问题了。但如果你在textmate中执行cmd+R(安装了<a href="http://github.com/alkemist/Java.tmbundle">Java.tmBundle</a>)，你会发现问题跟刚才讲的如出一撤，无法运行。其实这里有点小BUG，插件作者同样没有处理了javac的编译问题，你可以编译以下文件修复这个问题
+<code># mate ~/Library/Application Support/TextMate/Bundles/Java.tmbundle/Support/bin/java_compile_and_run.sh
+</code>
+在第16行和第21行添加参数-encoding UTF8，如下：
+<code>
+......<br />
+"$TM_JAVAC" -encoding UTF8 -d "$output" $TM_JAVA_FILEGLOB; rc=$?;<br />
+.......<br />
+"$TM_JAVAC" -encoding UTF8 -d "$output" "$SOURCE"; rc=$?;<br />
+........
+</code></p>
+
+<p><code><code> </code></code></p>
+
+<p><code><code>保存，再运行一次cmd+R看看，应该就正常了。(这里是我修复的派生版本：<a href="http://github.com/roymax/Java.tmbundle" target="_blank">http://github.com/roymax/Java.tmbundle</a>)</code></code></p>
+
+<p><code><code>在PlayFramework中，通常会在命令行中play run 或play test，如果我们在终端同样有输出的话，也会乱码。<br />
+要修改这个问题，可以编辑在PLAY_ROOT/中的play(基于1.0)或PLAY_ROOT/framework/pym/play/下的application.py（基于1.1 beta2)文件，在文件中找java_cmd，在它前面加入一行
+<code>java_args.append ('-Dfile.encoding = utf8'); </code>
+基于Python代码的特性，请记住，这一行需要跟java_cmd是并列缩进的，如果你懂py，估计你知道我在说什么了<br />
+或者如果不想改动Play的原文件，那么你在启动时这样做了，一样可行
+<code>play run -Dfile.encoding=utf8 </code>
+Notes: Play的作者说已经修复这个问题在仓库主干了，也许下一版本就不需要这么麻烦</code></code></p>
+
+<p></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-30T00:00:00+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2010</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/play-/'>play!</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/print-unicode-characters-to-the-osx-terminal-with-java" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/print-unicode-characters-to-the-osx-terminal-with-java" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/msn-space宣布关闭" title="Previous Post: MSN Space宣布关闭">&laquo; MSN Space宣布关闭</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/playframework_1_1_coming_soon" title="Next Post: play!framework 1.1正式版指日可待">play!framework 1.1正式版指日可待 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/print-unicode-characters-to-the-osx-terminal-with-java';
+        var disqus_url = 'http://roynotes.com/blog/print-unicode-characters-to-the-osx-terminal-with-java';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

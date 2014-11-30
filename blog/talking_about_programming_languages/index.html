@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>乱弹编程语言的选择 - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/talking_about_programming_languages">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+乱弹编程语言的选择
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-07T00:00:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2010</time>
+         &bull; <a rel="bookmark" href="/blog/talking_about_programming_languages">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p><p>经常会遇到这样的问题：&ldquo;我希望开发一个网站，我该选择Java，Php，dotnet还是其他呢？&rdquo;</p>
+<p>我经常的回答是，一个网站或产品在开始阶段是与具体的编程语言无关的。它只与企业内部的技术沉淀与发展有关，它影响着企业的一些选择，如人员招聘、架构设计、开发框架、开发环境、部署流程、还有开发效率等等。</p>
+<p>最近<strong>Fenng</strong>也写了一篇Blog《<a href="http://www.dbanotes.net/review/choose_programming_languages_important.html">编程语言的选择并非无关紧要</a>》，文中有部分观点我也表达认同，当一个网站达到一定的规模后，在架构上必定会发生一些变化，比如文中所指的淘宝从PHP向J2EE迁移，但我相信那个有趣的理由不是最终的决定因素，容我大胆的假设更多的原因应该是架构上的需要，以及由众多资深j2ee领域专家推动的，而且是循序渐进的，初期只是从核心业务层切换做系统异构，后来完全转向java full-stack.</p>
+<p>在某些特定行业，如大型MMORPG的开发，我相信没有人选择PHP,Rails,甚至JAVA来开发，C/C++将是第一选择，这更多是历史原因和技术沉淀决定的。使用C来开发游戏已经成为行业的标准，它有成熟的技术和框架支持，行业内的第一批游戏开发工程师都来自于C的技术领域，那时候java的性能还跑得好糟糕&#8230;&#8230;太多太多的数据让我们去选择C而不是其他。但我依然相信使用Java一样能够开发出一个好的游戏，但我们可能不能说服老板相信JVM的装机率是90%以上的，这个数字真的连我们都不相信是真实的；但Java没有成功的案例又影响着我们的决定；同时JAVA没有一个成熟的开发框架；JAVA没有一个有效可行的游戏引擎方案&#8230;&#8230;但如果有这样一个契机：游戏的服务端将需要跨平台？有一套成熟的游戏开发引擎？有大量的游戏开发开源项目支持我们前进？游戏模式变化了，不再是一服一世界，那是游戏云端？要求高性能的大型群体？windows已经不是玩家的统一操作系统？有游戏开发的IDE&#8230;&#8230;或许未来有太多太多的理由让我们选择JAVA去开发游戏而不是C，但这仅仅是多了一个选择而已，就像我们开发网站一样，我们有太多太多的选择：rails,php,python,java,dotnet,scala,grails&#8230;&#8230;</p>
+<p>无论有没有在一开始就选择了&ldquo;正确的&rdquo;编程语言，我们都会经历软件架构升级的阵痛。这种阵痛会伴随着我们的网站的快速成长而一直增长。选择了&ldquo;正确 的&rdquo;语言并不预示着我们将来的成功，偏偏网站的成功又决定着架构的发展的演变，有时这种演变会决定编程语言。因此在架构升级中，总有一些最激烈的大胆假设：我们或许应该变更编程语言！</p>
+<p>说到底，一个企业有怎么样的技术沉淀，有怎么样的技术团队就决定着使用怎么样的技术架构与编程语言。选择合适的技术团队，不是选择合适的开发语言。不要相信你的网站永不升级，不要相信你的架构完美无缺，使用技术团队最熟悉的技术去实施，将是风险最低的最好决定。管它使用什么语言呢，无论如何选择，我们都需要面对架构变迁的阵痛，那意味着用户激增，钱花啦花啦的来啊~~~</p></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-07T00:00:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2010</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rework/'>rework</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/talking_about_programming_languages" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/talking_about_programming_languages" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/managers" title="Previous Post: 我对于部门经理、项目经理与技术经理的理解">&laquo; 我对于部门经理、项目经理与技术经理的理解</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/professional-ability" title="Next Post: 领域技能">领域技能 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/talking_about_programming_languages';
+        var disqus_url = 'http://roynotes.com/blog/talking_about_programming_languages';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

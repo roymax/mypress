@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>let us Go - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/2013/09/let-us-go/">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Let Us Go
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T23:00:00+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/09/let-us-go/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><h2>简介</h2>
+
+<p>这里有两个主角，一个是 Nitrous.io，另一个是Go。正因为想学Go，所以想把一些学习过程记录下来</p>
+
+<h3>Nitrous.io</h3>
+
+<p>很早就知道 Nitrous.io 这个东西了，当时没有太多的感觉，没太多关注。最近无意中真正注册了一个帐号才发现，这不是一个所谓的 <em>云IDE</em> 这么简单，它还可以建立一个线上的虚拟开发环境，进行线上开发和测试，就像在本地用 <em>Vagrant</em> 进行开发一样。</p>
+
+<h3>Go</h3>
+
+<p>我想 Go 语言堪称当前最热的新开发语言了吧，除了系出 google 名门外，一些富现代感的特性让人赞不绝口。</p>
+
+<h2>开始</h2>
+
+<p>注册过程就跳过不表了，激活帐号后可以通过提供免费方案创造一个虚拟机，默认可选 Rails / node.js / Python / Go 四种预先定制的开发环境 <em>box</em> 。事实上这是一个基于 <strong>Ubuntu</strong> 的虚拟机，常用的<a href="http://help.nitrous.io/box-interpreters-and-tools/">开发工具一应俱全</a>，比如: git, hg, build-essential。你甚至可以在上面安装任意软件，如：JVM、Lua 或其他。我在这里选择了基于 <em>Go</em> 的模板虚拟环境!</p>
+
+<p>同时，还可以选择服务器所在地区，我选的是亚洲区域，总体上来说速度还可以接受。</p>
+
+<p>一切Ok后将进入如下图的在线开发环境工作台</p>
+
+<p><img src="http://d.pr/i/MqOD+"></p>
+
+<p>工作台的左方为项目目录树，中间有编辑区，下方是终端控制台。</p>
+
+<h3>Hello World</h3>
+
+<p>在终端输入命令</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>action@gobox-31437:~$ cd workspace/ && touch hello.go
+</span><span class='line'>action@gobox-31437:~/workspace$ ls
+</span><span class='line'>hi.go</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后可以通过IDE左方的目录树点击<code>workspace</code>发现刚才创建的<code>hi.go</code>文件，双击打开并输入</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">package</span> <span class="n">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">import</span> <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="s">&quot;Hello, World!!&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>回到终端，我可以使用 <code>go run hi.go</code> 执行它然后将回显 <strong>Hello World!!</strong></p>
+
+<h3>像Vagrant一样</h3>
+
+<p>事实上，Nitrous连作为一个好用的文本编辑器都不够格，那如何胜任开发的重任呢，这不是有点鸡肋吗？事实上，可以把Nitrous当Vagrant来使，好处有</p>
+
+<ul>
+<li>不占本地资源：硬盘、内存和CPU
+  SSD还是挺贵的</li>
+<li>不需要安装vagrant</li>
+<li>我可怜的08年 MacBook 风扇不再狂转</li>
+<li>工作环境云同步，网吧也能写代码</li>
+</ul>
+
+
+<p>Vagrant 有一个很好的功能就是文件同步，在本地使用习惯的 IDE 进行开发，文件实时同步在虚拟环境测试。既然 Nitrous 的线上 IDE 不好用，那么可以使用本地顺手的 IDE 进行开发。</p>
+
+<p>针对 Mac 可以下载官方的客户端，并打开文件同步功能</p>
+
+<p><img src="http://d.pr/i/Z3Zd+"></p>
+
+<p>这时将在<code>Home</code>目录创建一个名为<code>Nitrous.IO</code>的文件夹并进行同步，同步完成后将多了一个对应 box 命名的文件夹，内容为虚拟环境的<code>Home</code>目录。用 <code>sublime text 2</code> 打开刚才创建的<code>hi.rb</code>，本地做任何修改将在线上IDE看到即时变化。</p>
+
+<p>另外，还可以使用 <code>iTerm</code> 来替换线上的终端环境。</p>
+
+<p>打开<a href="https://www.nitrous.io/app#/boxes">https://www.nitrous.io/app#/boxes</a> 选中已创建的box 会发现有一项<code>SSH URI</code>。只要点击这个URI，<code>Safari</code>就会询问授权打开默认终端。当然，你也可以通过命令行在<code>iTerm</code>中输入打开远程终端，因为使用的是ssh 密钥认证所以整个过程无需密码</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>ssh action@URI -p PORT</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有时，从终端输入命令太繁琐了，可以在<code>~/.ssh/</code>创建一个<code>config</code>文件，内容如下</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>#~/.ssh/config
+</span><span class='line'>Host gobox
+</span><span class='line'>  HostName apne1.actionbox.io
+</span><span class='line'>  User action
+</span><span class='line'>  Port 12345
+</span><span class='line'>  IdentityFile ~/.ssh/id_rsa</span></code></pre></td></tr></table></div></figure>
+
+
+<p>保存后即可通过命令<code>ssh gobox</code>进入远端命令行</p>
+
+<p>另一种方法是配置一下<code>iTerm</code>，创建一个 <code>Profiles</code>并设置一个快捷键快速打开进入远端</p>
+
+<p><img src="http://d.pr/i/5XB0+"></p>
+
+<hr />
+
+<p>开发环境基本准备好了，接下来我要看看如何用Go做一个Web应用。</p>
+
+<p>最后，如果你想试用 Nitrous，欢迎点击 <a href="https://www.nitrous.io/join/YsusrqFe8dY">Nitrous小尾巴</a> 帮助我赞点小闪电。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T23:00:00+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/golang/'>golang</a>, <a class='category' href='/blog/categories/nitrous-io/'>nitrous.io</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/2013/09/let-us-go/" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/2013/09/let-us-go/" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/get-my-fund-value/" title="Previous Post: get my fund value">&laquo; get my fund value</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/09/lets-go-revel/" title="Next Post: let's go - revel">let's go - revel &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/2013/09/let-us-go/';
+        var disqus_url = 'http://roynotes.com/blog/2013/09/let-us-go/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

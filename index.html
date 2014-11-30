@@ -1,1 +1,1562 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2014/01/happy-new-year-to-you/">Happy New Year to You!</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-04T15:03:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2014</time>
+         &bull; <a rel="bookmark" href="/blog/2014/01/happy-new-year-to-you/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ pry
+</span><span class='line'>
+</span><span class='line'>2.0.0 (main):0 > 'Happy new year to you!'.each_byte.inject(:+)
+</span><span class='line'>=> 2014</span></code></pre></td></tr></table></div></figure>
+
+
+<p>偶尔在 twitter 上看到这个，惊喜之余翻出<code>inject</code>探个究竟</p>
+
+<p>文档给出这样的例子</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>(5..10).inject(:+)
+</span><span class='line'>=> 45</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>inject</code>可以解释作<strong>注入</strong>，它是<code>Enumerable</code>其中的一个实例方法，实现了<code>Enumerable</code>模块的类都可以使用它的实例方法，<code>Array</code>类当然实现了它。所以<code>inject</code>的作用就是在每个数组元素之间进行你想做的处理。<strong>Ruby</strong> 的API 文档给出了很直观的例子。</p>
+
+<p>回到开头那行代码就很直白了，将字符串转换成字节码然后相加，最终得到<strong>2014</strong>，令人愉悦的是那个字符串是<em>Happy new year to you!</em>。</p>
+
+<p>尝试用Java来写一下</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>    public static void main(String[] args) {
+</span><span class='line'>      String str = "Happy new year to you!";
+</span><span class='line'>
+</span><span class='line'>      int sum  = 0;
+</span><span class='line'>      for(byte b: str.getBytes()) {
+</span><span class='line'>          sum += b;
+</span><span class='line'>      }
+</span><span class='line'>      
+</span><span class='line'>      System.out.println(sum);
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-15T16:02:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/12/about-fitbit-force/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>过去三周中除了洗澡的时间，我几乎一直佩戴着 Fitbit Force。这是我购买的第一款智能腕带产品，所以我也无法对其与Nike Fuelband、Jawbond UP 等产品对待比较，下面只是我这三周下来的体验感受。</p>
+
+<p><img src="http://d.pr/i/AeyD+" alt="" /></p>
+
+<h3>为何选择 Force</h3>
+
+<p>Force 只是比上一代多了一个小屏幕用于显示时间，当天步行数，公里数，楼梯数，跑步数，闹钟时间等信息。官网介绍上说到在更新后，可以显示来电信息。</p>
+
+<p>正是因为看重这个小屏幕，所以选择了多支付30美元购买了Force 而不是 Flex。购买前当然也对比了 Fuelband 和 UP，不选择这两者的原因很简单，前者价格稍贵、外观线条粗犷、功能性也不占上风，虽然也很喜欢后者，但缺陷在于数据必须通过有线同步，这是一个不能接受的原因。</p>
+
+<p>我通过朋友在 LA 购买，税后的总价约140 刀左右，如果遇上什么电子节，黑色星期五之类的应该能拿到更优惠的价格。</p>
+
+<h3>日常使用</h3>
+
+<p>Force 佩戴非常舒服舒适，重量很轻，有时我还担心它是否有戴在手上，腕带能否扣住，但这几周下来证明这是多余的。</p>
+
+<p>可能由于腕带是橡胶材料的原因，第一次使用时扣上有点困难，但我觉得习惯就好，每次都能很顺利的扣上，而且上面也提到，一般情况下不会脱落，我也只在一次打篮球时被撞脱过。</p>
+
+<p>有些报道说Force 能防水，但当你看到背面那个USB充电接口，我相信你也跟我有同样的想法，一定不能戴着它游水和洗澡。但我相信洗手还是没有问题的，所以没有将它摘下。毕竟作为一个跑步/步行运动跟踪设备应该有考虑到一般的防水情况，因手背有大量汗水而导致它工作不良，这也太扯了吧？</p>
+
+<h3>续航能力</h3>
+
+<p>其续航能力真的非常值得称道，从充满电到系统提醒电力不足，它足足工作了15+ 天，朋友 mib 则宣称有三周时间。</p>
+
+<h3>饮食与卡路里</h3>
+
+<p>我每天使用Force 来跟踪步行数，没有关注过饮食数据，不使用的主要原因是需要手工录入，我对于卡路里的控制还没有到强迫症的地步，忽略它。</p>
+
+<h3>睡眠与闹钟</h3>
+
+<blockquote><p>睡前通过长按 Force上的按钮几秒，它将跳出一个秒钟开始计时，意味着它进入收集睡眠数据状态，你该睡了。醒来时重复该动作结束睡眠，或你有设置一个闹钟，闹钟结束时就是你的起库时间。</p></blockquote>
+
+<p>这，跟我理想的睡眠跟踪系统就有点距离了，我需要的是系统能自动分析进入睡眠数据收集，我醒来时它也能自动发现。同时我也需要一个智能闹钟，而不是一个定时闹钟，智能唤醒能帮助我更好的睡眠（我相信该理论并使用 App Store 上的Apps 试验过一段时间）。</p>
+
+<p>当然，有这样的一个时间跟踪也让我更清楚：我的睡眠时间严重不足，平均每天只有7小时。</p>
+
+<h3>Apps</h3>
+
+<p>可以负责任的说，官方Apps虽称不上反人类，但绝对不是经过优良的设计。暂时也找不到可替代官方的Apps。</p>
+
+<p>而且官方Apps 没有中国商店上架，所以你需要切换到香港或美国区下载安装。</p>
+
+<p>感觉打开App 的背景同步功能后，iPhone 掉电较平时更多。</p>
+
+<h3>总结</h3>
+
+<p>因为Force ，我每天会多选择走动来收集数据，甚至有时我会选择楼梯而不是电梯回到办公室。设定每天步行10000步的目标，达成后通过震动你的手腕提醒，每天感受它的震动也是一种快乐与满足。</p>
+
+<p>闹钟虽不尽如人意，但也习惯了每天被Force 震动唤醒。同时能收集睡眠数据，有时我会觉得通过数据能看到更真实的自己。</p>
+
+<p>最后，我想就可以这样描述Fitbit Force，有缺陷但对得起价格，值得购买。</p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-05T00:21:00+08:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/12/workflow-to-set-dns-servers/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>一直有在用签名为<a href="24says.com">24says.com</a>的 <strong>Set DNS Servers</strong> 工作流，花了点时间解决以下两个问题(同时加了自己的签名)：</p>
+
+<ol>
+<li>直接把支持的 DNS 列出来提示选择</li>
+<li><del>不需要每次变更都输入密码</del></li>
+</ol>
+
+
+<p>效果如图：
+<img src="http://d.pr/i/MATm+"></p>
+
+<p>下载地址：<a href="http://d.pr/f/tyf4">http://d.pr/f/tyf4</a></p>
+
+<hr />
+
+<ul>
+<li><p><strong>UPDATE 2013-12-13</strong> 发现脚本有BUG，下载地址已更新，如有下载请更新一下</p>
+
+<p>  每次更新DNS还是需要输入密码，如果要解决可以将networksetup 加入到sudoer里。</p></li>
+</ul>
+
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-26T14:17:00+08:00" pubdate data-updated="true">Nov 26<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/11/new-macbook-air-bootstarp/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>新电脑到手了，上一台 MacBook 购于2008年底，到现在整整使用了5年时光。事实上更换过SSD的它到目前为止还一切健康，促使我更换的原因有二：</p>
+
+<ol>
+<li>虽然只有5年但也过于沉重</li>
+<li>电池退化严重，续航能力为0</li>
+</ol>
+
+
+<p>电池其实已经坏掉好久了，也曾试过买兼容电池但很快又坏了。针对以上两个问题，我一直纠结于Air or Pro(Retina)。事实上Pro已经很轻了，但对于我脆弱的颈椎还是有很大的压力，所以最后还是选择了 MacBook Air 11“，而且我还给她起了一个非常棒的名字：Peter Pan。</p>
+
+<p>旧电脑用了五年，新机到手就没打算过如何做系统迁移，而是选择按需重组系统环境，特记录如下。</p>
+
+<hr />
+
+<h3>系统设置</h3>
+
+<ul>
+<li>Caps Lock键改为 Ctrl键</li>
+<li>安装了清歌输入法，放弃了鼠须管</li>
+<li>在 <em>设置</em> 中将鼠标和触控板能打勾的都勾上</li>
+<li>登录 iCloud 打开 MAS 下载已购软件</li>
+<li>GoAgentX 科学上网</li>
+</ul>
+
+
+<h3>办公工具</h3>
+
+<ul>
+<li>Pages/Nubmers/Keynote 都免费了，赞</li>
+</ul>
+
+
+<blockquote><p>懒得再装 Office，极少使用，用 iWork 足够解决需要了</p></blockquote>
+
+<h3>效率工具</h3>
+
+<ul>
+<li><strong>Dropbox</strong> 数据存储同步软件，有计划启用 微盘和百度网盘了，但周边支持太少</li>
+<li><strong>Evernote</strong> 笔记类工具，我只用于归档同步</li>
+<li><strong>nvALT</strong> 支持 Markdown 的速记工具，这使我可以弃用 Evernote</li>
+<li><strong>Byword</strong> 又一个支持 Markdown 的工具，iOS/OSX 支持，内购发布功能</li>
+<li><strong>Alfred</strong> 加速启动，加上工作流无比强大，附后工作流推荐，到这里下载
+
+<ul>
+<li>Dash</li>
+<li>Dash documentation lookup</li>
+<li>Flush DNS</li>
+<li>Google Suggest</li>
+<li>Network Location 快速切换网络位置</li>
+<li>Open current Safari tab in Chrome</li>
+<li>Toggle Caffeine</li>
+<li>Tunnelblick</li>
+<li>Wi-Fi Toggle</li>
+<li>Workflow Searcher</li>
+</ul>
+</li>
+<li><strong>Spectacle</strong> 分屏工具</li>
+<li><strong>Mou</strong> 有时用一下</li>
+<li><strong>Marked</strong> 预览 Markdown 的工具</li>
+<li><strong>Bartender</strong> 从Menu Bar 收纳一些非常用的 Icon</li>
+<li><strong>Fantastical</strong> 替换日历，Bundle购买就装上</li>
+<li><strong>Path Finder</strong> 替换 Finder，Bundle购买也一直没用好，继续尝试</li>
+<li><strong>1Password</strong> 贵！！！密码好帮手</li>
+</ul>
+
+
+<blockquote><p>通常我会使用 nvALT 速记，以纯文本的方式存储到 Byword 的目录使之可以通过 iCloud 同步，在片段经常整理成型后使用 Byword 的 publish(内购) 能力发布到 Evernote 归档。 从而形成以下工作流 <code>nvALT -&gt; Byword -&gt; Evernote</code></p></blockquote>
+
+<h3>开发工具</h3>
+
+<ul>
+<li><strong>IDEA</strong> 它把我用了几年的 Eclipse 给革命了</li>
+<li><strong>XCode</strong> 把命令行工具也装上</li>
+<li><strong>Homebrew</strong> 方便安装各种包</li>
+<li><strong>iTerm2</strong> 替换系统自带的终端</li>
+<li><strong>YADR dotfiles</strong> The best vim,git,zsh plugins and the cleanest vimrc you&#8217;ve ever seen https://github.com/skwp/dotfiles
+  因为针对zsh/vim/iTerm2/ruby等做了相应的配置，所以应该放到最后设置，提供了很多实用配置。</li>
+<li><strong>Sublime Text 2</strong> 已经是开发必备了，它始终让我无法转向 TextMate。插件包管理是必须的
+
+<ul>
+<li>Nil theme</li>
+<li>Flatland theme</li>
+<li>monokai extened color scheme</li>
+<li><a href="https://github.com/daylerees/colour-schemes">daylerees colour-schemes</a></li>
+<li><a href="https://github.com/vkocubinsky/SublimeTableEditor">TableEditor</a></li>
+<li><a href="https://github.com/ttscoff/MarkdownEditing">MarkdownEditing</a></li>
+<li>Marked.app Menu 快速预览 markdown</li>
+<li>Alignment 自动对齐</li>
+<li>SublimeLinter</li>
+<li>BrackerHighlighter</li>
+<li><a href="http://emmet.io">Emmet</a> the essential toolkit for web-developers</li>
+</ul>
+</li>
+<li><strong>Robomongo</strong> 它把MongoHub给击败了，赞</li>
+<li><strong>Sequel Pro</strong> Mysql Client 必备</li>
+<li><strong>pgAdmin3</strong> Postgres Client 必备</li>
+<li><strong>Postgres.app</strong> 就是 Postgres Server，这货太好用了</li>
+<li><strong>Dash</strong> 文档速查工具，配合 Alfred 使用更佳</li>
+<li><strong>JewelryBox</strong> ruby版本管理工具，rvm GUI</li>
+<li><strong>MacVim</strong> 经常<em>YADR Dotfiles</em> 定制过也挺好用</li>
+</ul>
+
+
+<p><img src="http://d.pr/i/v3ve+"></p>
+
+<p><img src="http://d.pr/i/tBL2+"></p>
+
+<p><img src="http://d.pr/i/Z8hN+"></p>
+
+<h3>网络工具</h3>
+
+<ul>
+<li><strong>QQ</strong> 这货耗电，但也离不开</li>
+<li><strong>迅雷</strong> 会员还是挺好用的</li>
+<li><strong>Chrome</strong> 主力还是 Safari，需要它的 Apps</li>
+<li><strong>Forklift</strong> FTP工具，冻点购买，够用也比较便宜</li>
+</ul>
+
+
+<h3>其他</h3>
+
+<ul>
+<li><strong>Pocket</strong> 延时阅读好帮手</li>
+<li><strong>VLC</strong> 看片好帮手</li>
+<li><strong>Sip</strong> 取色，勉强还行</li>
+<li><strong>Tunnelblick</strong> OpenVPN Client，配合 Alfred 使用更佳</li>
+<li><strong>tig</strong> Shell 下的 Git UI 工具</li>
+<li><strong>Caffeine</strong> 避免长时间离开系统休眠，配合 Alfred 使用更佳</li>
+</ul>
+
+
+<hr />
+
+<p>本来打算随便写写，结果写了这么多&#8230;想到再补</p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto Sync File With Nitrous.io on Mavericks</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-15T19:02:00+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>自从升级到 Mavericks 后，Nitrous.IO 的 <a href="https://www.nitrous.io/mac">OSX App</a> 就失效了，官方的最新版本还没有释放出来，这导致离线编辑自动同步到线上测试变得不可用。</p>
+
+<p>我知道有rsync同步的方法，但一直也懒得去研究，直到我遇到<a href="http://notes.geoffreyd.me/local-file-editing-with-nitrous-io-on-mavericks">这篇文章</a> 后算是解决问题了，只需要一条命令。</p>
+
+<p>开始前需要安装<code>fswatch</code>和<code>unison</code>，前者用于扫描文件变化，后者用于双向实时同步（跨Win/Linux/OSX），而且支持通过 SSH/RSH/Socket 进行同步。如果你也像我一样在使用<a href="/blog/the_homebrew_better_than_the_macports">brew</a>，可以通过命令 <code>brew install fswatch unison</code>安装。</p>
+
+<p>然后进入 <code>~/Nitrous.IO/gobox/bin</code> 创建一个同步脚本，我照抄上面的文章</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>#!/bin/bash
+</span><span class='line'>fswatch . "date +%H:%M:%S; unison /Users/roymax/Nitrous.IO/gobox/ ssh://action@gobox//home/action/workspace -ui text -terse -batch"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当我们需要工作时，只需要进入目录执行<code>./bin/start_sync.sh</code>，当本地编辑文件时将自己上传到 Nitrous.IO 的对应目录了。</p>
+
+<p>不过据本人测试，同步有点延时但总算能够正常工作。</p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/09/lets-go-revel/">Let&#8217;s Go - Revel</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-26T23:05:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/09/lets-go-revel/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>部署好<a href="/blog/2013/09/let-us-go/">Nitrous.io的Go环境</a>和输入<code>Hello World!!</code>后，接下来试试如何开发一个Web应用，并同样输出<code>Hello World!!</code>，于是找到了<a href="http://robfig.github.io/revel/">Revel</a></p>
+
+<h2>Revel</h2>
+
+<p>官网这样描述它<strong>A high-productivity web framework for the Go language.</strong>，而这里选择的原因只是因为看起来像<code>rails</code>罢了</p>
+
+<p>那么开始吧，要先安装这个框架，照着官网「<a href="http://robfig.github.io/revel/tutorial/gettingstarted.html">Getting Started</a>」</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ ssh gobox # 我配置了[ssh config](/blog/2013/09/let-us-go/)
+</span><span class='line'>
+</span><span class='line'>(gobox) $ cd workspace
+</span><span class='line'>(gobox) $ go get github.com/robfig/revel/revel</span></code></pre></td></tr></table></div></figure>
+
+
+<p>稍候片刻安装完成，看看目录结构</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>.
+</span><span class='line'>├── bin
+</span><span class='line'>├── pkg
+</span><span class='line'>│   └── linux_amd64
+</span><span class='line'>└── src
+</span><span class='line'>    ├── code.google.com
+</span><span class='line'>    ├── github.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>多了几个目录，其中<code>src</code>是依赖库的源代码目录，<code>pkg</code>是编译后的代码目录，<code>bin</code>则是命令行工具，现在我们有了一个<code>revel</code>命令</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>~/workspace$ revel
+</span><span class='line'>~
+</span><span class='line'>~ revel! http://robfig.github.com/revel
+</span><span class='line'>~
+</span><span class='line'>usage: revel command [arguments]
+</span><span class='line'>
+</span><span class='line'>The commands are:
+</span><span class='line'>
+</span><span class='line'>    new         create a skeleton Revel application
+</span><span class='line'>    run         run a Revel application
+</span><span class='line'>    build       build a Revel application (e.g. for deployment)
+</span><span class='line'>    package     package a Revel application (e.g. for deployment)
+</span><span class='line'>    clean       clean a Revel application's temp files
+</span><span class='line'>    test        run all tests from the command-line
+</span><span class='line'>
+</span><span class='line'>Use "revel help [command]" for more information.
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>如果想了解<code>Nitrous.io</code>默认给我们准备好的开发环境，可以打开<code>~/.bashrc</code>看看，里面包含了一些预设的环境变量。比如安装Go语言需要设置的<code>$GOPATH</code>和<code>$GOROOT</code></p></blockquote>
+
+<h2>First Web App</h2>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ revel new goweb #在src下会生成一个名goweb的项目
+</span><span class='line'>$ revel run goweb
+</span><span class='line'>~
+</span><span class='line'>~ revel! http://robfig.github.com/revel
+</span><span class='line'>~
+</span><span class='line'>INFO  2013/09/26 15:52:46 revel.go:292: Loaded module testrunner
+</span><span class='line'>INFO  2013/09/26 15:52:46 revel.go:292: Loaded module static
+</span><span class='line'>INFO  2013/09/26 15:52:46 run.go:57: Running goweb (goweb) in dev mode
+</span><span class='line'>INFO  2013/09/26 15:52:46 harness.go:157: Listening on :9000</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就跑起来了，可以看到默认跑在<code>:9000</code>端口，但<code>Nitrous</code>只支持3000,4000,8080,8888这四个端口，那么先把端口改为<code>3000</code></p>
+
+<p>打开<code>~/workspace/src/goweb/conf/app.conf</code>找到第四行<code>http.port=9000</code>改为<code>http.port=3000</code>重新启动<code>revel</code>。</p>
+
+<p>打开boxes列表找出<a href="http://help.nitrous.io/faq-localhost/">预览URL</a>，加上3000端口从浏览器打开可以看到<strong>It Works!</strong>的大字</p>
+
+<p><img src="http://d.pr/i/tL3m+" alt="goweb it works"></p>
+
+<blockquote><p>Tips: 域名很难记，但如果你像我一样在用MacBook，你还可以通过<em>Nitrous</em>的客户端打开<code>Port Forwarding</code>，然后就可以通过<code>http://localhost:&lt;port&gt;</code>来访问你的远端程序了</p></blockquote>
+
+<p><img src="http://d.pr/i/s6zE+" alt="nitrous Port Forwarding"></p>
+
+<p>注意：HTTPS貌似预览访问不了</p>
+
+<h2>再进一步</h2>
+
+<p>只是显示一个<code>It Works!</code>就结束还是单调了点，我打算传一个参数<code>name=roy</code>进去，然后显示<code>Hi,Roy</code></p>
+
+<p>用<code>Sublime Text</code>打开<code>~/Nitrous.IO/gobox</code>，使用<code>cmd+p</code>呼出搜索框输入<code>app.go</code>打开。</p>
+
+<p>通过文档我知道，如果需要传入参数，我可以这么做</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>func (c App) Index(name string) revel.Result {
+</span><span class='line'>  return c.Render(name)
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>再打开<code>It Works!</code>所在的模板文件<code>app/views/App/Index.html</code>，同时修改为</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>...
+</span><span class='line'>&lt;h1>hi \{\{.name\}\}!!&lt;/h1>
+</span><span class='line'>...#省略上下HTML部分</span></code></pre></td></tr></table></div></figure>
+
+
+<p>再刷新浏览器发现只显示出现<code>hi</code>，再把URL修改为<code>http://localhost:3000/?name=Roy</code>看看结果吧。</p>
+
+<h2>后记</h2>
+
+<p>观察一下<code>revel</code>生成的<code>goweb</code>项目，你会发现目录结构跟<code>rails</code>真的差不多，简单的摸索已经可以上手。接下来，或者可以试试连接数据库操作了。</p>
+
+<hr />
+
+<p>留下<a href="https://www.nitrous.io/join/YsusrqFe8dY">Nitrous小尾巴</a>求闪电: <a href="https://www.nitrous.io/join/YsusrqFe8dY">https://www.nitrous.io/join/YsusrqFe8dY</a></p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/09/let-us-go/">Let Us Go</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T23:00:00+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/09/let-us-go/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><h2>简介</h2>
+
+<p>这里有两个主角，一个是 Nitrous.io，另一个是Go。正因为想学Go，所以想把一些学习过程记录下来</p>
+
+<h3>Nitrous.io</h3>
+
+<p>很早就知道 Nitrous.io 这个东西了，当时没有太多的感觉，没太多关注。最近无意中真正注册了一个帐号才发现，这不是一个所谓的 <em>云IDE</em> 这么简单，它还可以建立一个线上的虚拟开发环境，进行线上开发和测试，就像在本地用 <em>Vagrant</em> 进行开发一样。</p>
+
+<h3>Go</h3>
+
+<p>我想 Go 语言堪称当前最热的新开发语言了吧，除了系出 google 名门外，一些富现代感的特性让人赞不绝口。</p>
+
+<h2>开始</h2>
+
+<p>注册过程就跳过不表了，激活帐号后可以通过提供免费方案创造一个虚拟机，默认可选 Rails / node.js / Python / Go 四种预先定制的开发环境 <em>box</em> 。事实上这是一个基于 <strong>Ubuntu</strong> 的虚拟机，常用的<a href="http://help.nitrous.io/box-interpreters-and-tools/">开发工具一应俱全</a>，比如: git, hg, build-essential。你甚至可以在上面安装任意软件，如：JVM、Lua 或其他。我在这里选择了基于 <em>Go</em> 的模板虚拟环境!</p>
+
+<p>同时，还可以选择服务器所在地区，我选的是亚洲区域，总体上来说速度还可以接受。</p>
+
+<p>一切Ok后将进入如下图的在线开发环境工作台</p>
+
+<p><img src="http://d.pr/i/MqOD+"></p>
+
+<p>工作台的左方为项目目录树，中间有编辑区，下方是终端控制台。</p>
+
+<h3>Hello World</h3>
+
+<p>在终端输入命令</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>action@gobox-31437:~$ cd workspace/ && touch hello.go
+</span><span class='line'>action@gobox-31437:~/workspace$ ls
+</span><span class='line'>hi.go</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后可以通过IDE左方的目录树点击<code>workspace</code>发现刚才创建的<code>hi.go</code>文件，双击打开并输入</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">package</span> <span class="n">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">import</span> <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="s">&quot;Hello, World!!&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>回到终端，我可以使用 <code>go run hi.go</code> 执行它然后将回显 <strong>Hello World!!</strong></p>
+
+<h3>像Vagrant一样</h3>
+
+<p>事实上，Nitrous连作为一个好用的文本编辑器都不够格，那如何胜任开发的重任呢，这不是有点鸡肋吗？事实上，可以把Nitrous当Vagrant来使，好处有</p>
+
+<ul>
+<li>不占本地资源：硬盘、内存和CPU
+  SSD还是挺贵的</li>
+<li>不需要安装vagrant</li>
+<li>我可怜的08年 MacBook 风扇不再狂转</li>
+<li>工作环境云同步，网吧也能写代码</li>
+</ul>
+
+
+<p>Vagrant 有一个很好的功能就是文件同步，在本地使用习惯的 IDE 进行开发，文件实时同步在虚拟环境测试。既然 Nitrous 的线上 IDE 不好用，那么可以使用本地顺手的 IDE 进行开发。</p>
+
+<p>针对 Mac 可以下载官方的客户端，并打开文件同步功能</p>
+
+<p><img src="http://d.pr/i/Z3Zd+"></p>
+
+<p>这时将在<code>Home</code>目录创建一个名为<code>Nitrous.IO</code>的文件夹并进行同步，同步完成后将多了一个对应 box 命名的文件夹，内容为虚拟环境的<code>Home</code>目录。用 <code>sublime text 2</code> 打开刚才创建的<code>hi.rb</code>，本地做任何修改将在线上IDE看到即时变化。</p>
+
+<p>另外，还可以使用 <code>iTerm</code> 来替换线上的终端环境。</p>
+
+<p>打开<a href="https://www.nitrous.io/app#/boxes">https://www.nitrous.io/app#/boxes</a> 选中已创建的box 会发现有一项<code>SSH URI</code>。只要点击这个URI，<code>Safari</code>就会询问授权打开默认终端。当然，你也可以通过命令行在<code>iTerm</code>中输入打开远程终端，因为使用的是ssh 密钥认证所以整个过程无需密码</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>ssh action@URI -p PORT</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有时，从终端输入命令太繁琐了，可以在<code>~/.ssh/</code>创建一个<code>config</code>文件，内容如下</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>#~/.ssh/config
+</span><span class='line'>Host gobox
+</span><span class='line'>  HostName apne1.actionbox.io
+</span><span class='line'>  User action
+</span><span class='line'>  Port 12345
+</span><span class='line'>  IdentityFile ~/.ssh/id_rsa</span></code></pre></td></tr></table></div></figure>
+
+
+<p>保存后即可通过命令<code>ssh gobox</code>进入远端命令行</p>
+
+<p>另一种方法是配置一下<code>iTerm</code>，创建一个 <code>Profiles</code>并设置一个快捷键快速打开进入远端</p>
+
+<p><img src="http://d.pr/i/5XB0+"></p>
+
+<hr />
+
+<p>开发环境基本准备好了，接下来我要看看如何用Go做一个Web应用。</p>
+
+<p>最后，如果你想试用 Nitrous，欢迎点击 <a href="https://www.nitrous.io/join/YsusrqFe8dY">Nitrous小尾巴</a> 帮助我赞点小闪电。</p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/08/get-my-fund-value/">Get My Fund Value</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-18T20:17:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/08/get-my-fund-value/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>回想2008年，头脑发热买了一批基金，而且是在暴跌的前夕。无需有太多的猜想也知道，必亏无疑的，直到今天每一只在未计息和通货的情况下也亏损30%左右。是的，无论基于什么价值投资也好，沉没成本也好我都好像应该卖了它，事实上是我一直也没有将它们卖出。每隔一段时间我都会看看他们的「收益」如何。</p>
+
+<p>基金工具有很多，但没有一个我觉得称心的，我只是想偶尔看一下，不想录入太多不必要的表单。我只想录入基金编号，本金和份额，得到当前的价值即可。</p>
+
+<p>以前，我是用一个Excel文件记录下每一只基金，忘记了调用一个什么函数动态从一个基金网站抓取当天的净值数据，后来这个文件丢失了，我只好每次查询每一只基金并输入净值数据。</p>
+
+<p>这个周末，刚好看到一个便捷的<a href="http://www.juhe.cn/docs/api/id/25">基金接口</a>后，我决定写一个小脚本完成我的小需求。</p>
+
+<div><script src='https://gist.github.com/6261332.js?file=data.yaml'></script>
+<noscript><pre><code>funds:
+  - 
+    code: &quot;375010&quot;
+    capital: 10000
+    units: 3353
+  - 
+    code: &quot;270002&quot;
+    capital: 5000
+    units: 2544.47
+  # and more</code></pre></noscript></div>
+
+
+
+
+<div><script src='https://gist.github.com/6261332.js?file=fund.rb'></script>
+<noscript><pre><code># encoding: utf-8
+
+require &quot;httparty&quot;
+require &quot;json&quot;
+require &quot;settingslogic&quot;
+#require &#39;terminal-table&#39;
+require &#39;text-table&#39;
+require &#39;colorize&#39;
+
+# 基金查询小工具
+
+class Settings &lt; Settingslogic
+  source &quot;data.yml&quot;
+end
+
+key = &quot;&quot;
+response = HTTParty.get(&quot;http://web.juhe.cn:8080/fund/netdata/all?key=#{key}&quot;)
+
+fund_data = JSON.parse(response.body)
+myfunds = Settings[:funds]
+
+table = Text::Table.new
+table.head = [&#39;名称&#39;, &#39;余额&#39;, &#39;收益&#39;]
+
+# table = Terminal::Table.new :headings =&gt; [&#39;名称&#39;, &#39;余额&#39; ,  &#39;收益&#39;] do |t|
+fund_data[&quot;result&quot;][0].each do |key, fund|
+  myfunds.each do |my|
+    if my[&quot;code&quot;] == fund[&quot;code&quot;]
+      balance = fund[&quot;newnet&quot;].to_f * my[&quot;units&quot;].to_f
+      mynet = (balance - my[&quot;capital&quot;] ).round(2)
+      # t.add_row [&quot;#{fund[&quot;name&quot;]}(#{fund[&quot;code&quot;]})&quot;, &quot;#{balance.round(2)}&quot;, &quot;#{mynet &gt; 0 ? mynet.to_s.red : mynet.to_s.green}&quot;]
+      table.rows &lt;&lt; [&quot;#{fund[&quot;name&quot;]}(#{fund[&quot;code&quot;]})&quot;, &quot;#{balance.round(2)}&quot;, &quot;#{mynet &gt; 0 ? mynet.to_s.red : mynet.to_s.green}&quot;]
+    end
+  end
+end
+# end
+p table
+</code></pre></noscript></div>
+
+
+<p><code>ruby 1.9.3</code>测试通过，依赖<code>httparty</code>,<code>settingslogic</code>,<code>text-table</code>,<code>colorize</code>，运行前请确认已经安装以上gem，同时需要到<a href="http://www.juhe.cn">juhe.cn</a>申请一个API KEY。</p>
+
+<p>运行效果，看这个</p>
+
+<p><img class="" src="http://d.pr/i/gjbf+"></p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/04/twitter-finagle/">Twitter Finagle</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-14T11:28:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/04/twitter-finagle/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><h2>简介</h2>
+
+<p>Finagle是twitter内部的一个非常重要的核心工具库，它大量被应用于twitter内部系统。Finagle是一个异步的网络框架，能被用于实现异步的RPC客户端程序和基于JVM语言体系的服务端，包括Java，Scala，Jython等。</p>
+
+<p>它还支持众多协议</p>
+
+<ul>
+<li>HTTP</li>
+<li>HTTP Streaming (Comet)</li>
+<li>Thrift</li>
+<li>Memcached/Kestrel</li>
+<li>MySQL</li>
+<li>protobuf</li>
+<li>&#8230;&#8230;</li>
+</ul>
+
+
+<p>基于Finagle的Server端特性支持</p>
+
+<ul>
+<li>Backpressure (to defend against abusive clients)</li>
+<li>Service Registration (e.g., via Zookeeper)</li>
+<li>Distributed Tracing</li>
+<li>OpenSSL</li>
+</ul>
+
+
+<p>基于Finagle的Client端特性支持</p>
+
+<ul>
+<li>Connection Pooling</li>
+<li>Load Balancing</li>
+<li>Failure Detection</li>
+<li>Failover/Retry</li>
+<li>Distributed Tracing (à la Dapper)</li>
+<li>Service Discovery (e.g., via Zookeeper)</li>
+<li>Rich Statistics</li>
+<li>Native OpenSSL Bindings</li>
+</ul>
+
+
+<p>twitter是Scala重度用户，同时Finagle也是写于Scala，围绕Finagle衍生了很多辅助的项目</p>
+
+<ul>
+<li><a href="https://github.com/twitter/scrooge">scrooge</a></li>
+<li><a href="https://github.com/twitter/sbt-scrooge">sbt-scrooge</a></li>
+<li><a href="https://github.com/twitter/scala-boostrapper">scala-bootstrapper</a></li>
+<li><a href="https//github.com/twitter/sbt-package-dist">sbt-package-dist</a></li>
+<li>&#8230;&#8230;</li>
+</ul>
+
+
+<p>其中<code>scrooge</code>是一个<strong>thrift</strong>代码生成器的Scala版本，是<em>Apapche Thrift</em>版本的替换且保持与它兼容，它同时用于生成符合<em>Finagle</em>使用的代码，当前只支持生成Scala和Java文件。而<code>sbt-scrooge</code>则是一个sbt插件。</p>
+
+<p><code>scala-bootstrapper</code>类似于一个脚手架工具，用于生成一个基础的<code>finagle</code>项目</p>
+
+<p><code>sbt-package-dist</code>则是一个基于sbt的打包插件</p>
+
+<h2>Hello World</h2>
+
+<p>这个<code>Hello World</code>将由<em>scala-bootstrapper</em>项目入手，该项目是一个ruby项目，因此确保有ruby安装环境。</p>
+
+<p>通过<code>scala-bootstrapper &lt;project&gt;</code>可以生成项目，但必须先建立一个项目目录，否则在当前目录创建</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ mkdir myfinagle && cd myfinagle
+</span><span class='line'>$ scala-bootstrapper myfinagle
+</span><span class='line'>writing Capfile
+</span><span class='line'>writing config/development.scala
+</span><span class='line'>writing config/production.scala
+</span><span class='line'>writing config/staging.scala
+</span><span class='line'>writing config/test.scala
+</span><span class='line'>writing Gemfile
+</span><span class='line'>writing project/build/MyfinagleProject.scala
+</span><span class='line'>writing project/build.properties
+</span><span class='line'>writing project/plugins/Plugins.scala
+</span><span class='line'>writing run
+</span><span class='line'>writing src/main/scala/com/twitter/myfinagle/MyfinagleServiceImpl.scala
+</span><span class='line'>writing src/main/scala/com/twitter/myfinagle/config/MyfinagleServiceConfig.scala
+</span><span class='line'>writing src/main/scala/com/twitter/myfinagle/Main.scala
+</span><span class='line'>writing src/main/thrift/myfinagle.thrift
+</span><span class='line'>writing src/scripts/console
+</span><span class='line'>writing src/scripts/startup.sh
+</span><span class='line'>writing src/test/scala/com/twitter/myfinagle/AbstractSpec.scala
+</span><span class='line'>writing src/test/scala/com/twitter/myfinagle/MyfinagleServiceSpec.scala</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我还根据需要，修改了一些依赖配置</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>.....
+</span><span class='line'>
+</span><span class='line'>libraryDependencies ++= Seq(
+</span><span class='line'>  "org.scala-lang" % "jline"                 % “2.9.1”,  #升级版本
+</span><span class='line'>  "com.twitter"    % "scrooge-generator"     % "3.0.8" intransitive(),  #升级版本
+</span><span class='line'>  "com.twitter"    % "scrooge-runtime"       % "3.0.8" intransitive(),  #升级版本
+</span><span class='line'>  "com.twitter"    % "finagle-core"          % “6.1.2”,  #升级版本
+</span><span class='line'>  "com.twitter"    % "finagle-thrift"        % “6.1.2”,  #升级版本 
+</span><span class='line'>  "com.twitter"    % "finagle-ostrich4"      % “6.1.2”,  #升级版本
+</span><span class='line'>  "org.scalatest" %% "scalatest"             % "1.7.1" % "test",
+</span><span class='line'>  "com.twitter"   %% "scalatest-mixins"      % "1.1.0" % "test"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>...
+</span><span class='line'>
+</span><span class='line'>CompileThriftScrooge.scroogeVersion := "3.0.8"  #升级版本
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>升级版本后，需要打开<code>src/main/scala/com/twitter/&lt;project&gt;/FinalgeServiceImpl.scala</code>将最后的<code>shutdown()</code>方法删除，否则无法编译通过</p>
+
+<p>最后按照项目目录下的<code>TUTORIAL.md</code>执行更新和测试启动是否成功</p>
+
+<p>但要正常运行，请看有哪些坑吧</p>
+
+<h2>坑</h2>
+
+<h3>sbt</h3>
+
+<ul>
+<li>执行<code>sbt update</code>前，如果你有自己架设的<em>maven代理服务器</em>，建议添加一下代理仓库，或加到项目根目录下的<code>sbt</code>文件里</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  #!/bin/bash
+</span><span class='line'>
+</span><span class='line'>  export SBT_PROXY_REPO="proxy server address"</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>如果打算使用自己的maven代理，将<code>project/plugins.sbt</code>里的<strong>resolvers</strong>部分指定的仓库加入到私有仓库。</p></li>
+<li><p>twitter的仓库(http://maven.twttr.com/)已被污染了IP，请确认你能访问该域名，否则应该修改<code>/etc/hosts</code>添加<code>199.59.148.212 maven.twttr.com</code></p></li>
+<li><p><code>freemarker</code>也无法访问，好像无关痛痒，注释掉</p></li>
+<li><p>没有必要单独安装sbt和scala，因为项目根目录本来就有一个sbt的脚本，它会自动下载并构建一个sbt和scala的运行环境，并且推荐使用该脚本文件</p></li>
+<li><p>如果需要使用本地的sbt环境，需要指定sbt版本<code>echo "sbt.version=0.11.3" &gt; ./project/build.properties</code></p></li>
+</ul>
+
+
+<h3>scala-bootstrapper</h3>
+
+<p>尝试<code>gem install scala-bootstrapper</code>发现可以安装，观察一下版本发现有点旧了，最后还是自己编译安装</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>$ git clone https://github.com/twitter/scala-bootstrapper.git
+</span><span class='line'>$ cd scala-bootstrapper
+</span><span class='line'>$ rake build
+</span><span class='line'>$ gem install pkg/scala-bootstrapper-*.gem</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但我在<code>rake build</code>这一步时遇到问题</p>
+
+<p>  fail &#8220;ERROR: &#8216;rake/rdoctask&#8217; is obsolete and no longer supported. Use &#8216;rdoc/task&#8217; (available in RDoc 2.4.2+) instead.&#8221;</p>
+
+<p>最后通过修改源代码解决</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'># Add this line just before the require to fix the deprecation notice
+</span><span class='line'>$LOAD_PATH.sort_by! { |p| p.match(%r[/rake\-]) ? 1 : 0 }
+</span><span class='line'>
+</span><span class='line'># 找到rake/rdoctask 替换为 rdoc/task
+</span><span class='line'>require 'rdoc/task'</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>scrooge</h3>
+
+<p>编译脚本会从twitter的仓库下载一个<a href="http://maven.twttr.com/com/twitter/scrooge/3.0.0/">scrooge-3.0.0.zip</a>的压缩包，不知道什么原因，scrooge的最新版本没有上传到仓库，同时也找不到这个最新版本的zip。那么如果需要使用新版本的scrooge，那要么使用<code>maven</code>，要么自己打一个zip包放到本地仓库</p>
+
+<p>我不知道twitter内部的计划，我通过以下方法生成了一个<code>3.0.8</code>版本</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>cd /tmp
+</span><span class='line'>git clone git://github.com/twitter/scrooge.git
+</span><span class='line'>cd scrooge 
+</span><span class='line'>mvn package dependency:copy-dependencies
+</span><span class='line'>
+</span><span class='line'>cd /tmp
+</span><span class='line'>wget http://maven.twttr.com/com/twitter/scrooge/3.0.1/scrooge-3.0.1.zip
+</span><span class='line'>unzip scrooge-3.0.1
+</span><span class='line'>mv scrooge-3.0.1 scrooge-3.0.8
+</span><span class='line'>cd scrooge-3.0.8 
+</span><span class='line'>rm -rf *.jar libs/*.jar
+</span><span class='line'>sed -i "" -e "s/3.0.1/3.0.8/g" ./scripts/scrooge
+</span><span class='line'>cp /tmp/scrooge/scrooge-generator/target/scrooge-generator-3.0.8.jar ./scrooge-3.0.8.jar
+</span><span class='line'>cp -r /tmp/scrooge/scrooge-generator/target/dependency/*.jar libs/
+</span><span class='line'>cd ..
+</span><span class='line'>zip -r scrooge-3.0.8.zip scrooge-3.0.8
+</span><span class='line'>cp scrooge-3.0.8.zip ~/.m2/repository/com/twitter/scrooge/3.0.8/</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>后记</h2>
+
+<p><code>Finagle</code>作为twitter的核心工具库，性能和稳定性应该还是有一定保障的，而且从公布开源的出来的一系列工具堆栈非常有吸引力，如用于数据收集和报告的ostrich，性能分析的zipkin等。但文档确认稍候欠奉，会遇上各种坑。</p>
+
+<p>再加上Scala的各版本不太兼容，稍不注意你就找不到对应的包。比如我希望设置用于scala-2.10.0版本就遇到些问题，而且花了好些时间才解决。估计scala发行版本再不保障版本的向前兼容，估计以后也很难普及。scala的社区个人觉得还是不够好，关注的人太少。scala在github上1196人加星，374人fork；而ruby的数据则是3826/867。</p>
+
+<p>另不知基于什么原因，估计twitter已经开始将sbt迁移到maven，以至于有多个sbt插件项目已经至少半年以上没有更新了，其中就包括了<code>scala-bootstrapper</code>和<code>sbt-scrooge</code>。所以，如果确定要使用finagle，建议还是使用maven吧，反正<code>scala-bootstrapper</code>生成的代码也没帮到多少，自己用<a href="https://github.com/n8han/giter8">giter8</a>也不是什么难事。</p>
+
+<h2>参考资料</h2>
+
+<ul>
+<li><a href="http://sunwenfeng.blogspot.com/2012/12/twitter-finagle-scalarpc.html">Finagle+Spring</a></li>
+<li><a href="https://github.com/twitter/scala_school">https://github.com/twitter/scala_school</a></li>
+<li><a href="http://twitter.github.io/effectivescala/index-cn.html">Effective scala</a></li>
+<li><a href="https://github.com/fujohnwang/real_world_scala/blob/master/02_sbt.markdown">使用SBT构建Scala应用</a></li>
+</ul>
+
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    <article >
+      
+  <header>
+    <h1 class="entry-title">
+
+<a href="/blog/2013/03/alfred-workflows/">Alfred Workflows</a>
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T18:31:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+         &bull; <a rel="bookmark" href="/blog/2013/03/alfred-workflows/">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>早几天将Alfred升级到2.0，一些旧的扩展都不能用了，整理了一些我需要用到的workflows，可以通过<a href="https://www.dropbox.com/sh/ihmoq5ll1zqubf7/z-T7mAHipJ">Dropbox</a>下载</p>
+
+<h3>Dash documentation lookup</h3>
+
+<p>可以通过快捷<code>dl</code>快速查询Dash.app，例子</p>
+
+<ul>
+<li><code>dl java:String</code>查询java的String类</li>
+<li><code>dl pop</code> 所有包括pop关键字的API</li>
+</ul>
+
+
+<h3>Flush DNS</h3>
+
+<p>这是一个重写自1.x扩展的工作流，作用是刷新DNS缓存。比较简单，但经常用到，通过<code>flush</code>关键字调用。</p>
+
+<h3>Github</h3>
+
+<p>快速查询github，详细看<a href="http://www.v2ex.com/t/63356">这里</a></p>
+
+<h3>Network Location</h3>
+
+<p>更改网络位置，之前因为在公司需要指定IP，这种快速切换网络位置的功能比较实用。因为是从我的配置中导出，所以这里将快捷键设置成<code>lo {query}</code></p>
+
+<h3>The Pirate Bay</h3>
+
+<p><a href="http://lucifr.com/2013/03/18/yet-another-the-pirate-bay-workflow-for-alfred-2/">看这里吧</a></p>
+
+<h3>WiFi Toggle</h3>
+
+<p>通过<code>wifi</code>触发打开关闭wifi</p>
+
+<h3>Startup News</h3>
+
+<p><a href="http://news.dbanotes.net">Startup News</a> 最近浏览比较多，本来打算做一个，结果<a href="http://www.v2ex.com/t/63210">有人做好了</a></p>
+
+<hr />
+
+<p>UPDATE:</p>
+
+<p>一个Alfred工作流的汇总页 <a href="http://www.alfredworkflow.com/">http://www.alfredworkflow.com/</a></p>
+</div>
+
+  <footer>
+    
+    
+  </footer>
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+    <a href="/archives/">Blog Archives</a>
+    
+  </div>
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

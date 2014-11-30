@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>技术总结－ouxifan第一个测试版本发布 - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/ouxifan-beta-1">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+技术总结－ouxifan第一个测试版本发布
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-31T00:00:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2011</time>
+         &bull; <a rel="bookmark" href="/blog/ouxifan-beta-1">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>经过去一个月的开发，于上周末终于迎来了我们产品的第一个beta版本，该版本实现了产品最核心的功能，所有不是那么“不重要”的都被排除在外：它没有搜索功能，它没有站内消息功能，它也没有可嵌套的评论，甚至连找回密码都没有。因为以上的我们现在都不需要，我们只做了一个像样一点的帐号管理功能、登录、注册，你可以换一下头像，按我们的指引发布一个关于穿衣打扮的意见，关注其他用户关于穿衣打扮的见解，评论它。就是这么简单的一个“可用”版本，它也僅僅是“可用”，我们甚至打算为它准备好几天来Debug。但没有关系，我们都准备好了面对这一切，我们打算把它做得更好一些。</p>
+
+<p>而在过去的一周，我一直在期待这一个beta版本的来临，为了给将来的产品模式部署做好准备，我谋划着如何为它准备测试机的测试环境。并尽量让测试环境接近于产品环境。</p>
+
+<p>我们用到的技术：
+<ul>
+	<li><strong>PlayFramework</strong> 1.1 ，刚刚升级到1.1.1</li>
+	<li>MySQL 5.1.41 ， 打算在5.5测试通过后，升级到 5.5</li>
+	<li>JDK 1.6.0_21</li>
+	<li><strong>memcached</strong> 1.4.2 ,    Cached部分</li>
+	<li>GlassFish 3.0.1   ,        Application 服务器</li>
+	<li><strong>Mercurial</strong> Server (hg)     ,    代码仓库</li>
+	<li><strong>nginx</strong> 0.7.67  ,               Proxy ＋ 静态Host</li>
+	<li>ubuntu-10.04.1-server-amd64  ,      服务器系统</li>
+	<li>GraphicsMagick 1.3.12</li>
+</ul>
+下面是一些关于Play的经验、产品技术开发、准备测试环境时遇到的问题及解决方法:
+<ol>
+	<li> <strong>为什么选择PlayFramework ？</strong>一开始我们想用Rails，敏捷而且快速。但团队更熟悉Java，而本人认为SSH风格的开发模式过于繁锁，我们需要的是一个能够快速开发，快速迭代的框架，PlayFramework看起来不错，我们就尝试着用它。</li>
+	<li><strong>项目目录结构</strong> 为日后可能的多项目公共代码引用，我们将一些公共代码抽取放入到Play 的Modules 里，各项目以引用modules的方式共享公共代码。看起来像这样:
+<code>
+</code><blockquote>sources<br />
+|-  apps<br />
+|       |- main<br />
+|       |- passport<br />
+|- modules<br />
+|       |- models<br />
+|       |- commons<br />
+|       |- statics</blockquote>
+</li>
+	<li><strong>为CDN分发做准备</strong> 我们将所有apps的静态文件都放入了statics modules中分类存放，通过Play的routes配置，在开发者环境中各apps通过引入modules来做路径的相对引用，而产品模式可以配置成对应的host路由，像我们的配置文件一样：
+<code>
+</code><blockquote>#{if play.mode.isDev()}<br />
+GET /public/images/ staticDir:public/images<br />
+GET /public/ staticDir:public/<br />
+#{/}<br />
+#{else}<br />
+GET imgs.domain.com.cn/ staticDir:public/images<br />
+GET jscss.domain.com.cn/javascripts/ staticDir:public/javascripts<br />
+GET jscss.domain.com.cn/stylesheets/ staticDir:public/stylesheets<br />
+#{/}</blockquote>
+
+以图片举例，在开发环境中，html片段为: /public/images/commons/foo.jpg<br />
+而在产品模式下，html片段为： imgs.domain.com.cn/public/images/commons/foo.jpg<br />
+要运用以上技巧，除了配置routes外，还需要修改HTML模板中的路由引用:<br />
+将</li></ol></p>
+
+<p><code>
+</code></p>
+
+<p><code>
+<blockquote>&lt;script src="@{'/public/javascripts/common/jquery-1.4.2-noConflict.min.js'}"&gt;&lt;/script&gt;</blockquote>
+</code></p>
+
+<p>修改为
+<code>
+</code></p>
+
+<p><code>
+<blockquote>&lt;script src="@@{'/public/javascripts/common/jquery-1.4.2-noConflict.min.js'}"&gt;&lt;/script&gt;</blockquote>
+</code>注意引用@符号从一个修改为两个，@表示当前域名相对路径引用，@@表示绝对路径引用。
+	<li><strong>Session问题</strong> 其实是cookie，Play的Session 是基于cookie的，但又不允许开发者修改cookie的domain，如果应用有多个子域名需要一次登录，那么就需要自定义一个Sessoin方案。因为我们简单地实现了一个SSO。</li>
+	<li>Nginx 上传文件大小限制，在nginx配置文件添加client_max_body_size配置解决<code>
+</code></li></p>
+
+<p><code>
+<blockquote>client_max_body_size 5m;</blockquote>
+</code>
+	<li>Play的模板是可以嵌套调用的，因为可以分为：全局模板，局部模板及页面片段</li>
+	<li>善用Play id特性，可以将不同开发者、测试、产品模式的配置项写在配置文件内而不相互干扰</li>
+	<li>gm在ubuntu 10.04通过apt-get安装的最新版本是1.3.07，它不支持thumbnail参数，这个参数可以将图片的信息去除，使图片更小。我们下载了最新的安装包1.3.12，并参考 <a href="http://cblfs.cross-lfs.org/index.php/GraphicsMagick">http://cblfs.cross-lfs.org/index.php/GraphicsMagick</a> 编译通过。</li>
+	<li>在使用gm生成形象照时，我们发现图片有点粗糙，如果要想高质量的图片，需要调整quality参数，我们定义在90时感觉不错了</li>
+	<li>max open files 在ubuntu 10.04通过设置/etc/security/limits.conf 后nginx不生效，通过修改nginx配置添加worker_rlimit_nofile解决<code>
+</code></li></p>
+
+<p><code>
+<blockquote>worker_rlimit_nofile 65535;</blockquote>
+</code>
+	<li>自Play 1.1 发布支持glassFish上原生部署，非通过war包形式，但我们的项目部署出错，最后选择Nginx + Play <a name="server"></a></li>
+	<li>Play获取真实IP需要做两件事情，
+<ol>
+	<li>在NginX 中添加X-Forwarded-For header</li>
+	<li>在Play中添加application.conf文件中添加X-Forwarded-For支持</li>
+</ol>
+代码如下：[codesyntax lang=&#8221;text&#8221; title=&#8221;NginX.conf&#8221; container=&#8221;none&#8221; capitalize=&#8221;no&#8221; strict=&#8221;no&#8221;]
+<pre>location ~ .* {
+	    proxy_set_header        X-Real-IP       $remote_addr;
+            proxy_set_header        X-Forwarded-For $remote_addr;
+            proxy_pass   http://127.0.0.1:9000;
+        }</pre>
+[/codesyntax]</li></p>
+
+<p>[codesyntax lang=&#8221;text&#8221; title=&#8221;application.conf&#8221; container=&#8221;none&#8221; capitalize=&#8221;no&#8221; strict=&#8221;no&#8221;]
+<pre>XForwardedSupport=127.0.0.1,10.0.0.25</pre>
+[/codesyntax]<br />
+在Controller中通过request.remoteAddress获取真实IP
+	<li>Play在dev模式下连接memcached会经常丢失shutdown，这是因为Play的class auto reload问题引起，此问题暂时无解。</li>
+
+暂时想到这些，想到再补充。<br />
+标题上的ouxifan是我们的项目开发代码</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-31T00:00:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2011</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/play-/'>play!</a>, <a class='category' href='/blog/categories/团队/'>团队</a>, <a class='category' href='/blog/categories/技术/'>技术</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/ouxifan-beta-1" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/ouxifan-beta-1" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/fucking-ie-only" title="Previous Post: 狗日的IE only">&laquo; 狗日的IE only</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/a-professional-fast-and-secure-vpn" title="Next Post: 支持iPhone的高速VPN服务－Astrill">支持iPhone的高速VPN服务－Astrill &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/ouxifan-beta-1';
+        var disqus_url = 'http://roynotes.com/blog/ouxifan-beta-1';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

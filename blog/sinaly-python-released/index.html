@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>发布我的应用--SiNALY - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/sinaly-python-released">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+发布我的应用--SiNALY
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-20T00:00:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2011</time>
+         &bull; <a rel="bookmark" href="/blog/sinaly-python-released">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>之前用Play-framework写了一个<a title="sinaly- 新浪微博与trunk.ly的连接器" href="http://blog.roynotes.com/2011/02/12/sinaly/" target="_blank">新浪微博与Trunk.ly的连接器程序</a>，并部署到GAE上，由于种种原因,其实是用不了的。我又用了大概一周晚上的时间，平均每天1个多小时左右用Python重新写了一个。我是从来没有用python写过web app，最多只是当胶水语言来实现一些偷懒的工作。</p>
+
+<p>所以在框架上我选择了看起来最简单最容易入手的web.py作为开发框架。刚开始时是非常顺利的，甚至只用了一个小时就基本写好了代码结构，要知道我是不了解web.py的，但这也只证明web.py真提简单易用，但当要深一步去调整时就要不停的repeat再repeat地调试了，因为大部分的功能都需要依赖外部第三方实现，中途我甚至还有过一段时间在想是不是换成Django算了，我想我还是喜欢一栈式的解决方案。</p>
+
+<p>最后，在CSS和排版上我也遇到一些问题，毕竟我不是设计师，但又超爱漂亮，所以就瞎鼓搞了一些时间。最终这个程序经过包装后重装放出来了</p>
+
+<p><a href="http://sinaly.roynotes.com"><img class="aligncenter size-large wp-image-28208" title="sinaly-python" src="http://assets.roynotes.com/uploads/2011/02/sinaly-python-1024x690.png" alt="SiNALY-python版本" width="640" height="431" /></a>
+<blockquote>
+<ul>
+	<li>开发语言：python</li>
+	<li>微博 python SDK：<a href="https://github.com/plestoon/python-sinat">sinat-python</a></li>
+	<li>Trunk.ly python SDK:  <a href="https://github.com/roymax/trunkly-python">trunkly-python</a></li>
+	<li>web开发框架：web.py</li>
+	<li>modules: lxml , jinja2 , sqlalchemy</li>
+</ul>
+</blockquote>
+程序部署在<a href="http://www.webfaction.com/?affiliate=roymax">WebFaction</a>上，通过Apache2 + mod_wsgi 运行。今天在部署上还是遇到了一些问题，比较Python的库路径，mod_wsgi的配置。</p>
+
+<p>因为一切都不熟悉，所以工作起来特别有趣。</p>
+
+<p>现在SiNALY的只是定时获取微博内容分析并同步的Trunk.ly上去分享，我想现阶段在效率上一定会有问题，后面我将主要完成两个工作：
+<ol>
+	<li>改进同步的脚本，让它再有效率</li>
+	<li>添加解除同步绑定功能</li>
+</ol>
+如果你在用<a href="http://t.sina.com.cn">新浪微博</a>，又同时在使用<a href="http://trunk.ly">Trunk.ly</a>，欢迎试用 <a title="SiNALY" href="http://sinaly.roynotes.com">SiNALY</a>。如果对于功能、改进、BUG上有什么建议，请<a href="http://blog.roynotes.com/about-roy/">联系我</a>，当然最简单的方式是在新浪上<a href="http://t.sina.com.cn/roymax">@我</a> 或 twitter <a href="http://twitter.com/roy_wei">@roy_wei</a>。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-20T00:00:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2011</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lab/'>lab</a>, <a class='category' href='/blog/categories/技术/'>技术</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/sinaly-python-released" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/sinaly-python-released" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/sinaly" title="Previous Post: sinaly- 新浪微博与trunk.ly的连接器">&laquo; sinaly- 新浪微博与trunk.ly的连接器</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/titanium-dev-platform" title="Next Post: Titanium框架开发者平台介绍">Titanium框架开发者平台介绍 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/sinaly-python-released';
+        var disqus_url = 'http://roynotes.com/blog/sinaly-python-released';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

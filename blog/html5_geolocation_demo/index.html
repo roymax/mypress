@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>尝试HTML5物理定位 - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/html5_geolocation_demo">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+尝试HTML5物理定位
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2010</time>
+         &bull; <a rel="bookmark" href="/blog/html5_geolocation_demo">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>geolocation是html5规范中的新特性，它主要通过GPS和IP地址来猜测客户端的上网位置，输出位置信息。换言之，如果没有GPS设备，它将使用后者来猜测你的位置，所以结果不是绝对精准的。</p>
+
+<p>规范的详细文档可浏览：<a href="http://dev.w3.org/geo/api/spec-source.html">http://dev.w3.org/geo/api/spec-source.html</a></p>
+
+<p>当前并不是所有的浏览器都支持geolocation，在目前为止以下浏览器支持该新特性：IE8,safari4,chrome,Opera(我没验证)。但如果你的应用需要在非以上浏览中实现类似geolocation的功能，可以使用google location services,可以参考文章<a href="http://blog.bcse.info/get-geolocation-via-javascript">http://blog.bcse.info/get-geolocation-via-javascript</a></p>
+
+<p>为保障使用者安全，使用该API时浏览器会询问用户是否启用该功能。如图：</p>
+
+<p><a title="Flickr 上 roymax 的 geolocation" href="http://www.flickr.com/photos/roymax/4658866115/"><img src="http://farm2.static.flickr.com/1287/4658866115_efe433b800.jpg" alt="geolocation" width="500" height="75" /></a></p>
+
+<p>只有允许API才生效。</p>
+
+<p>通常使用<span style="color: #000000;"><strong>getCurrentPosition</strong></span>来获取使用者当前的位置，如果需要的跟踪使用者的位置调用<strong>watchPosition</strong>，传闻后者可以为移动设备更节省电力，手上没有移动设备，也并未理解它们之间的分别。</p>
+
+<p>无论使用以上那个，都返回一个Position对象来描述物理位置，它包含调用者的经纬坐标（coords）&#8211;经度、纬度、海拨、准确度等等&#8230;&#8230;部分参数是需要具体实现支持的，如果没有将返回默认值null.</p>
+
+<p>下面是geolocation最简单的调用例子：</p>
+
+<p><code> </code></p>
+
+<p><code>&lt;script&gt;</code></p>
+
+<p>if (navigator.geolocation) {</p>
+
+<p>navigator.geolocation.getCurrentPosition(function(position){</p>
+
+<p>alert(&#8220;latitude = &#8221; + position.coords.latitude+ &#8221;\nlongitude = &#8221; + position.coords.longitude);</p>
+
+<p>});</p>
+
+<p>} else {</p>
+
+<p><span style="white-space: pre;"> </span>error(&#8216;not supported&#8217;);</p>
+
+<p>}</p>
+
+<p></p>
+
+<p><code>&lt;/script&gt;</code></p>
+
+<p>它返回了当前的物理位置，并通过警告窗口显现。该API本身是非常简单，期待更多基于该API的新应用产生。当定位信息准确化后，它将改变我们的生活，同时也给我们带来相对的痛苦。当然，只是相对的。。。</p>
+
+<p>以下是<a href="http://html5demos.com/geo">http://html5demos.com/geo</a>上显视壬丰大厦的物理位置
+<a title="Flickr 上 roymax 的 renfeng" href="http://www.flickr.com/photos/roymax/4659678304/"><img src="http://farm5.static.flickr.com/4024/4659678304_6e87fdc1fd.jpg" alt="renfeng" width="500" height="467" /></a></p>
+
+<p>参考资料：
+<ul>
+	<li> <a href="http://html5demos.com/geo">http://html5demos.com/geo</a> ,  相对完整并整合了google map的例子</li>
+	<li><span style="color: #0000ee;"><span style="text-decoration: underline;"><a href="http://www.mijia.org/blog/?p=198">http://www.mijia.org/blog/?p=198</a></span></span></li>
+	<li><span style="color: #0000ee;"><span style="text-decoration: underline;"><a href="http://dev.w3.org/geo/api/spec-source.html">http://dev.w3.org/geo/api/spec-source.html</a></span></span>，w3关于geo的规范</li>
+	<li><span style="color: #0000ee;"><span style="text-decoration: underline;"><a href="https://developer.mozilla.org/En/Using_geolocation#Watching_the_current_position">https://developer.mozilla.org/En/Using_geolocation</a></span></span>，mozilla上的帮助</li>
+	<li><span style="color: #0000ee;"><span style="text-decoration: underline;"><a href="http://blog.bcse.info/get-geolocation-via-javascript-2">http://blog.bcse.info/get-geolocation-via-javascript-2</a></span></span>，整合google gear便于支持非html5浏览器</li>
+</ul></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2010</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lab/'>lab</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/html5_geolocation_demo" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/html5_geolocation_demo" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/outward-bound-in-2010-5" title="Previous Post: 两天的团队拓展训练">&laquo; 两天的团队拓展训练</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/integration-playframework_scala_gae_siena" title="Next Post: playframework+scala+gae!wow...">playframework+scala+gae!wow... &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/html5_geolocation_demo';
+        var disqus_url = 'http://roynotes.com/blog/html5_geolocation_demo';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>

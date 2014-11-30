@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>play!framework 1.1正式版指日可待 - Roy Notes</title>
+  <meta name="author" content="roymax">
+  <meta name="Generator" content="Jekyll & Octopress (http://octopress.org)">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://roynotes.com/blog/playframework_1_1_coming_soon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/octopress.min.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Roy Notes" type="application/atom+xml">
+  
+
+<!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44129046-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+   
+  <link href="/octopress-favicon.png" rel="icon">
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Roy Notes</a></h1>
+  
+    <h2>21世纪的互联网居民</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:roynotes.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives/">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+
+
+
+
+
+
+
+
+
+
+
+<article class="hentry " role="article">
+  
+  <header>
+    <h1 class="entry-title">
+
+Play!framework 1.1正式版指日可待
+
+</h1>
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-26T00:00:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2010</time>
+         &bull; <a rel="bookmark" href="/blog/playframework_1_1_coming_soon">Permalink</a>
+      </p>
+    
+  </header>
+
+<div class="entry-content"><p>自10月份以来连续放出三个RC版本，估计Play! 1.1的里程碑发布将指日可待了。在新版本中包含的特性是非常精彩，它们令Play!框架更加完整完善。当时，个人感觉跟Rails在某些细节上还是有一些差距的。</p>
+
+<p>首先的一点是，插件不如Rails丰富。即使GRails也不如。Play要获取爆炸式的发布的话，grails社区能否积极地参与进来及是否有更多的ssh开发者投入到该阵型并开发更多的模块插件有着很大的关系。</p>
+
+<p>rails的一栈式服务，原生就能够做到各层的代码生成，无论是正向还是反向的。如rails的models 是动态生成的，不是特殊情况，是不必手工处理ORM的映射关系。在Play!中你需要通过JPA annotation来做实体的映射关系，虽然有一个module插件(<a title="play-db" href="http://www.playframework.org/modules/db" target="_blank">play-db</a>)可以解决这个问题，但截至目前为止，该module 在做包含外键关系的代码生成时会出错而不可用。同时对于我最大的问题是：它不支持scala。</p>
+
+<p>还有那个cookie based session的问题，对于rails来说，这是可选方案，但对于Play来讲这是唯一方案。你得自己去做另外的实现，比如memcached based&#8230;..</p>
+
+<p>&#8230;&#8230;</p>
+
+<p>总体感觉细节上还是不如Rails，当初选择Play！是因为它支持Scala语言，看起来真的好Cool，但记住，Play！只是轻度支持。什么意思？它并非原生支持Scala，只是在框架上多了一个Module，令你可以使用Scala的语法来构建应用。说到底，它的底层实现还是基于Java的。所以有时候调用起来还是有点儿别扭了。</p>
+
+<p>如果是Scala的重度Web开发感染者，我还是建议你去玩Liftweb算了，纯Scala实现，多拉风啊！我只是不喜欢它的框架是statefull实现。</p>
+
+<p>无论如何，以下是我最喜欢的五个新特性！期待1.1的正式版发布。
+<ul>
+	<li>Scala language support</li>
+	<li>Native Glassfish deployment support</li>
+	<li>Virtual hosting in routes</li>
+	<li>New powerful async WS library</li>
+	<li>OAuth support</li>
+</ul>
+PS:
+<ul>
+	<li>我正在用Play! 1.1来构建两个应用。其中一个基于Java，另一个基于Scala</li>
+	<li>1.1已于11月1日发布(更新于2010.11.2)</li>
+</ul></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">roymax</span></span>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-26T00:00:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2010</time>
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/play-/'>play!</a>
+  
+</span>
+
+
+
+      
+
+    </p>
+    
+      <div class="sharing">
+  
+    
+      <a href="http://twitter.com/share" title="Tweet this" class="twitter-share" target="_blank">Tweet</a>
+    
+  
+  
+    
+      <a title="+1 on Google Plus" class="googleplus-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://roynotes.com/blog/playframework_1_1_coming_soon" target="_blank">+1</a>
+    
+  
+  
+    
+    <a title="Share on Facebook" class="facebook-share" href="http://www.facebook.com/sharer.php?u=http://roynotes.com/blog/playframework_1_1_coming_soon" target="_blank">Share</a>
+    
+  
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/print-unicode-characters-to-the-osx-terminal-with-java" title="Previous Post: Print Unicode characters to the OSX Terminal with Java">&laquo; Print Unicode characters to the OSX Terminal with Java</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/a-story-and-a-cake" title="Next Post: 讲故事与做蛋糕">讲故事与做蛋糕 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<section>
+  <h1>Comments</h1>
+  
+
+  
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  
+</section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/happy-new-year-to-you/">Happy new year to you!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/about-fitbit-force/">About Fitbit Force</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/workflow-to-set-dns-servers/">Workflow to Set DNS Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/new-macbook-air-bootstarp/">New MacBook Air Bootstarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/auto-sync-file-with-nitrous-dot-io-on-mavericks/">Auto sync file with Nitrous.io on Mavericks</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets" data-user="roy_wei" data-count="4" data-replies="false">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+    <a href="//twitter.com/roy_wei" class="twitter-follow-button" data-show-count="false">Follow @roy_wei</a>
+  
+</section>
+
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/roymax?count=5&amp;sort=date&amp;callback=octopress.renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/roymax">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - roymax -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'roynotes';
+			var disqus_developer = '0';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://roynotes.com/blog/playframework_1_1_coming_soon';
+        var disqus_url = 'http://roynotes.com/blog/playframework_1_1_coming_soon';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+</body>
+</html>
